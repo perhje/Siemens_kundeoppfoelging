@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Siemens_kundeoppfoelging</string>
+    <string name="servicerequest">Service Request</string>
+    <string name="changeuserinformation">Change User Information</string>
+    <string name="youtubechannel">Youtube Channel</string>
+    <string name="lifenet">Lifenet</string>
 </resources>

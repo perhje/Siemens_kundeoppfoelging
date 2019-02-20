@@ -2,7 +2,40 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingVertical="40dp">
+
+    <Button
+        android:id="@+id/servicerequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"
+        android:text="@string/servicerequest"/>
+
+    <Button
+        android:id="@+id/changeuserinformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"
+        android:text="@string/changeuserinformation"/>
+
+    <Button
+        android:id="@+id/youtubechannel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"
+        android:text="@string/youtubechannel"/>
+
+    <Button
+        android:id="@+id/lifenet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"
+        android:text="@string/lifenet"/>
 
 
 </LinearLayout>
