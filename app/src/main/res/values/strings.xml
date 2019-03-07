@@ -4,4 +4,10 @@
     <string name="changeuserinformation">Change User Information</string>
     <string name="youtubechannel">Youtube Channel</string>
     <string name="lifenet">Lifenet</string>
+    <string name="yourName">Name</string>
+    <string name="yourTelephone">Telephone</string>
+    <string name="yourEmail">E-mail</string>
+    <string name="yourEmployeeID">Employee ID</string>
+    <string name="save">Save</string>
+    <string name="button_main">Main</string>
 </resources>
