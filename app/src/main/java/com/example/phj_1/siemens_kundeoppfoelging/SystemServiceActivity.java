@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class systemServiceActivity extends AppCompatActivity {
+public class SystemServiceActivity extends AppCompatActivity {
     Button call;
     Button generateemail;
     TextView SystemId;
@@ -23,7 +23,7 @@ public class systemServiceActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.systemServiceActivity);
+        setContentView(R.layout.systemserviceactivity);
         //-----------need to rewrite code when using QR CODE------
         SystemId=(TextView)findViewById(R.id.SystemId);
         SystemInput=(EditText)findViewById(R.id.SystemInput);
@@ -39,7 +39,7 @@ public class systemServiceActivity extends AppCompatActivity {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse("tel:41170011"));
 
-                if (ActivityCompat.checkSelfPermission(systemServiceActivity.this,
+                if (ActivityCompat.checkSelfPermission(SystemServiceActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
