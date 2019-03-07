@@ -21,7 +21,7 @@ public class Menu extends Activity{
     }
 
     public void changeUserInformation(View v){
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent=new Intent(this,ContactInfo.class);
         startActivity(intent);
     }
 
@@ -37,7 +37,6 @@ public class Menu extends Activity{
         intent.setPackage("com.google.android.youtube");
         intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));//funker ikke på emulator, skal funke så lenge youtube er der
         startActivity(intent);
-
     }
 
     public void lifeNet(View v){
