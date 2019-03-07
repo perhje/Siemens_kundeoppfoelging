@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/textView_contact_yourEmplyeeID"
+        android:id="@+id/textView_contact_yourEmployeeID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/yourEmployeeID"

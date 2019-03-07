@@ -28,7 +28,7 @@ public class ContactInfo extends Activity{
         yourNameTexView = (TextView) findViewById(R.id.textView_contact_yourName);
         yourTelephoneTexView = (TextView) findViewById(R.id.textView_contact_yourTelephone);
         yourEmailTexView = (TextView) findViewById(R.id.textView_contact_yourEmail);
-        yourEmployeeIDTexView = (TextView) findViewById(R.id.textView_contact_yourEmplyeeID);
+        yourEmployeeIDTexView = (TextView) findViewById(R.id.textView_contact_yourEmployeeID);
         yourNameEditText = (EditText) findViewById(R.id.editText_contact_yourName);
         yourTelephoneEditText = (EditText) findViewById(R.id.editText_contact_yourTelephone);
         yourEmailEditText = (EditText) findViewById(R.id.editText_contact_yourEmail);
@@ -57,7 +57,7 @@ public class ContactInfo extends Activity{
         editor.putString("yourName", yourNameTexView.getText().toString());
         editor.putString("yourTelephone", yourTelephoneTexView.getText().toString());
         editor.putString("yourEmail", yourEmailTexView.getText().toString());
-        editor.putString("yourEmployeeID", yourEmployeeIDTexView.toString());
+        editor.putString("yourEmployeeID", yourEmployeeIDTexView.getText().toString());
 
         editor.apply();
     }
