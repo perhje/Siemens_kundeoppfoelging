@@ -44,7 +44,7 @@ TextView viewObject;
     }
 
     public void systemService(View v){
-        Intent intent=new Intent(this, systemServiceActivity.class);
+        Intent intent=new Intent(this, SystemServiceActivity.class);
         startActivity(intent);
 
     }
