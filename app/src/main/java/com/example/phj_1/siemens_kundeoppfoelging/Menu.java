@@ -28,7 +28,7 @@ public class Menu extends Activity{
     }
 
     public void lifeNet(View v){
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent=new Intent(itemService.class);
         startActivity(intent);
     }
 }

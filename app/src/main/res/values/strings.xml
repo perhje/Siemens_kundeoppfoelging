@@ -4,4 +4,8 @@
     <string name="changeuserinformation">Change User Information</string>
     <string name="youtubechannel">Youtube Channel</string>
     <string name="lifenet">Lifenet</string>
+    <string name="system">Add your system</string>
+    <string name="back">Back</string>
+    <string name="callsupport">Call support</string>
+    <string name="sendmail">Send request mail</string>
 </resources>
