@@ -18,7 +18,7 @@ public class Menu extends Activity{
     }
 
     public void changeUserInformation(View v){
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent=new Intent(this,ContactInfo.class);
         startActivity(intent);
     }
 
