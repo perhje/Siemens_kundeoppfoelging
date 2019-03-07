@@ -50,7 +50,7 @@ public class ContactInfo extends Activity{
     }
 
     public void saveContactInfo(){
-        super.onPause();
+        //super.onPause();
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -61,9 +61,10 @@ public class ContactInfo extends Activity{
 
         editor.apply();
     }
-
-    public void loadContactInfo(){
+    @Override
+    protected void onResume(){
         super.onResume();
+
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
 
         String yourName = sharedPreferences.getString("yourName", "");
@@ -77,6 +78,5 @@ public class ContactInfo extends Activity{
         yourEmployeeIDTexView.setText(yourEmployeeID);
 
     }
-
 
 }
