@@ -33,11 +33,11 @@
 
         </activity>
         <activity
-            android:name=".ServiceActivity"
+            android:name=".ServiceRequest"
             android:parentActivityName=".Menu"></activity>
         <activity
             android:name=".systemServiceActivity"
-            android:parentActivityName=".ServiceActivity"></activity>
+            android:parentActivityName=".ServiceRequest"></activity>
     </application>
 
 </manifest>

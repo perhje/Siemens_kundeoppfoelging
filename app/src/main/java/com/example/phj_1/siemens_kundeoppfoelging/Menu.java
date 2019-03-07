@@ -16,7 +16,7 @@ public class Menu extends Activity{
     }
 
     public void serviceRequest(View v){
-        Intent intent=new Intent(this,MainActivity.class);
+        Intent intent=new Intent(this,ServiceRequest.class);
         startActivity(intent);
     }
 
