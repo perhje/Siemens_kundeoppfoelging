@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class Menu extends Activity{
@@ -33,14 +34,38 @@ public class Menu extends Activity{
         intent.setPackage("com.android.gallery");
         intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));
         startActivity(intent);*/
-        Intent intent = new  Intent(Intent.ACTION_VIEW);
-        intent.setPackage("com.google.android.youtube");
-        intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));//funker ikke på emulator, skal funke så lenge youtube er der
-        startActivity(intent);
+        /*
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setPackage("com.google.android.youtube");
+            intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));//funker ikke på emulator, skal muligens funke så lenge youtube er der
+            startActivity(intent);*/
+        if(installedCheck("com.google.android.youtube")) {
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
+            startActivity( launchIntent );
+        }else{
+            Intent intent=new Intent(this,QRScreen.class);
+            startActivity(intent);
+        }
     }
 
     public void lifeNet(View v){
-        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.android.gallery");
-        startActivity( launchIntent );
+        if(installedCheck("com.android.gallery")) {
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.android.gallery");
+            startActivity( launchIntent );
+        }else{
+            Intent intent=new Intent(this,QRScreen.class);
+            startActivity(intent);
+        }
+    }
+
+    public boolean installedCheck(String s){
+        PackageManager packageManager = getPackageManager();
+        try{
+            packageManager.getPackageInfo(s,PackageManager.GET_ACTIVITIES);
+            return true;
+        }catch (PackageManager.NameNotFoundException e){
+
+        }
+        return false;
     }
 }
