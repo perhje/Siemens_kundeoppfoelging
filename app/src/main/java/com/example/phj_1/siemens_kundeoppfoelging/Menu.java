@@ -27,8 +27,8 @@ public class Menu extends Activity{
     }
 
     public void youtubeChannel(View v){
-        /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.android.gallery");
-        startActivity( launchIntent );*/
+        /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
+            startActivity( launchIntent );*/
         /*Intent intent = new  Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.setPackage("com.android.gallery");
@@ -40,8 +40,10 @@ public class Menu extends Activity{
             intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));//funker ikke på emulator, skal muligens funke så lenge youtube er der
             startActivity(intent);*/
         if(installedCheck("com.google.android.youtube")) {
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
-            startActivity( launchIntent );
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setPackage("com.google.android.youtube");
+            intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));//funker ikke på emulator, skal muligens funke så lenge youtube er der
+            startActivity(intent);
         }else{
             Intent intent=new Intent(this,QRScreen.class);
             startActivity(intent);
@@ -49,8 +51,8 @@ public class Menu extends Activity{
     }
 
     public void lifeNet(View v){
-        if(installedCheck("com.android.gallery")) {
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.android.gallery");
+        if(installedCheck("com.siemenshealthineers.lnconnect")) {
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.siemenshealthineers.lnconnect");
             startActivity( launchIntent );
         }else{
             Intent intent=new Intent(this,QRScreen.class);
