@@ -15,4 +15,8 @@
     <string name="yourEmployeeID">Employee ID</string>
     <string name="save">Save</string>
     <string name="button_main">Main</string>
+    <string name="hint_contact_name">Name</string>
+    <string name="hint_contact_Telephone">Telephone</string>
+    <string name="hint_contact_email">Email</string>
+    <string name="hint_contact_employeeID">Employee ID</string>
 </resources>
