@@ -2,6 +2,7 @@ package com.example.phj_1.siemens_kundeoppfoelging;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ public class SystemServiceActivity extends AppCompatActivity {
     EditText SystemInput;
     TextView problemdescription;
     EditText editProblemdescription;
+    String referanse;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +33,26 @@ public class SystemServiceActivity extends AppCompatActivity {
         problemdescription=(TextView)findViewById(R.id.Problem);
         editProblemdescription=(EditText)findViewById(R.id.ProblemInput);
         call=(Button)findViewById(R.id.callsupport);
-        generateemail=(Button)findViewById(R.id.sendmail);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
+
+        String yourName = sharedPreferences.getString("yourName", "");
+        String yourTelephone = sharedPreferences.getString("yourTelephone", "");
+        String yourEmail = sharedPreferences.getString("yourEmail", "");
+        String yourEmployeeID = sharedPreferences.getString("yourEmployeeID", "");
+        referanse= "Id: "+yourEmployeeID + "\n" + "Name: "+yourName+ "\n" + "Phone: "+yourTelephone+ "\n" +"Email: "+ yourEmail;
+        generateemail=(Button)findViewById(R.id.sendmail);
+        generateemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+              GenerateEmail();
+            }
+        });
 
         call.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:41170011"));
+                callIntent.setData(Uri.parse("tel:41141134"));
 
                 if (ActivityCompat.checkSelfPermission(SystemServiceActivity.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -48,12 +63,13 @@ public class SystemServiceActivity extends AppCompatActivity {
         });
     }
     public void GenerateEmail(){
+        String sysName = String.valueOf(SystemInput.getText());
         Intent i = new Intent(Intent.ACTION_SENDTO);
         i.setType("message/rfc822");
         i.setData(Uri.parse("mailto:"));
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"phamducnguyen@hotmail.com"});
-        i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
-        i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+        i.putExtra(Intent.EXTRA_SUBJECT, "Service request, system"+ sysName +"have issues and need service");
+        i.putExtra(Intent.EXTRA_TEXT   , "Hello!"+ "\n" + sysName+" have issues and need service"+ "\n" +"Regards"+ "\n" + referanse);
         getIntent().addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             startActivity(Intent.createChooser(i, "Send mail..."));
@@ -61,6 +77,7 @@ public class SystemServiceActivity extends AppCompatActivity {
             Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 
 
