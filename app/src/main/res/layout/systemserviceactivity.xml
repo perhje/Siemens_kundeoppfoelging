@@ -44,11 +44,11 @@
 
 
     <Button
-        android:id="@+id/generatemail"
+        android:id="@+id/sendmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sendmail"
-        android:onClick="GenerateEmail"
+
         android:layout_marginTop="100dp"
         android:textColor="@color/light1"
         android:background="@color/accent3"/>
