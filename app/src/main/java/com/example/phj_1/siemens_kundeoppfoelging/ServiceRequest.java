@@ -43,11 +43,12 @@ TextView viewObject;
         });
     }
 
-    public void systemService(View v){
+    public void createemail(View v){
         Intent intent=new Intent(this, SystemServiceActivity.class);
         startActivity(intent);
 
     }
+
 
     public void goback(View v) {
         finish();
