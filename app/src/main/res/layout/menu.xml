@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginHorizontal="40dp"
-    android:background="@color/light1">
+    android:layout_marginHorizontal="30dp">
+
     <ImageView
-        android:id="@+id/logo"
-        android:layout_marginTop="70dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <LinearLayout
+        android:id="@+id/imageView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="200dp">
+        android:contentDescription="TODO"
+        android:src="@mipmap/siemens_logo_four" />
+
         <Button
             android:id="@+id/servicerequest"
             android:layout_width="match_parent"
@@ -54,7 +53,5 @@
             android:background="@color/accent3"
             android:text="@string/lifenet"
             android:onClick="lifeNet"/>
-    </LinearLayout>
-
 
 </LinearLayout>

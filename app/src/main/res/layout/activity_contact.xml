@@ -1,72 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginHorizontal="30dp">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="TODO"
+        android:src="@mipmap/siemens_logo_four" />
 
     <TextView
         android:id="@+id/textView_contact_yourName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/yourName"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"/>
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
     <EditText
         android:id="@+id/editText_contact_yourName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/hint_contact_name"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/textView_contact_yourTelephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/yourTelephone"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"/>
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
     <EditText
         android:id="@+id/editText_contact_yourTelephone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <!--android:inputType=""-->
-        <!--android:autofillHints="" -->
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/hint_contact_Telephone"
+        android:inputType="phone" />
 
     <TextView
         android:id="@+id/textView_contact_yourEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/yourEmail"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"/>
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
     <EditText
         android:id="@+id/editText_contact_yourEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/hint_contact_email"
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/textView_contact_yourEmployeeID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/yourEmployeeID"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"/>
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
     <EditText
         android:id="@+id/editText_contact_yourEmployeeID"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="@string/hint_contact_employeeID"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/button_contact_save"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save"
         android:layout_gravity="center_horizontal"
-        />
-
+        android:layout_marginTop="10dp"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"
+        android:text="@string/save" />
 </LinearLayout>

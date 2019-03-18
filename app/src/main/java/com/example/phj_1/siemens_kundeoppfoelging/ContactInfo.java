@@ -38,10 +38,11 @@ public class ContactInfo extends Activity{
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                yourNameTexView.setText(yourNameEditText.getText().toString());
-                yourTelephoneTexView.setText(yourTelephoneEditText.getText().toString());
-                yourEmailTexView.setText(yourEmailEditText.getText().toString());
-                yourEmployeeIDTexView.setText(yourEmployeeIDEditText.getText().toString());
+                //yourNameTexView.setText(yourNameEditText.getText().toString());
+                yourNameEditText.setText(yourNameEditText.getText().toString());
+                yourTelephoneEditText.setText(yourTelephoneEditText.getText().toString());
+                yourEmailEditText.setText(yourEmailEditText.getText().toString());
+                yourEmployeeIDEditText.setText(yourEmployeeIDEditText.getText().toString());
 
                 saveContactInfo();
             }
@@ -54,10 +55,10 @@ public class ContactInfo extends Activity{
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("yourName", yourNameTexView.getText().toString());
-        editor.putString("yourTelephone", yourTelephoneTexView.getText().toString());
-        editor.putString("yourEmail", yourEmailTexView.getText().toString());
-        editor.putString("yourEmployeeID", yourEmployeeIDTexView.getText().toString());
+        editor.putString("yourName", yourNameEditText.getText().toString());
+        editor.putString("yourTelephone", yourTelephoneEditText.getText().toString());
+        editor.putString("yourEmail", yourEmailEditText.getText().toString());
+        editor.putString("yourEmployeeID", yourEmployeeIDEditText.getText().toString());
 
         editor.apply();
     }
@@ -72,10 +73,10 @@ public class ContactInfo extends Activity{
         String yourEmail = sharedPreferences.getString("yourEmail", "");
         String yourEmployeeID = sharedPreferences.getString("yourEmployeeID", "");
 
-        yourNameTexView.setText(yourName);
-        yourTelephoneTexView.setText(yourTelephone);
-        yourEmailTexView.setText(yourEmail);
-        yourEmployeeIDTexView.setText(yourEmployeeID);
+        yourNameEditText.setText(yourName);
+        yourTelephoneEditText.setText(yourTelephone);
+        yourEmailEditText.setText(yourEmail);
+        yourEmployeeIDEditText.setText(yourEmployeeID);
 
     }
 
