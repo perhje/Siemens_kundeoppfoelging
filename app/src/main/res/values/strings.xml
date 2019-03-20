@@ -19,4 +19,18 @@
     <string name="hint_contact_Telephone">Telephone</string>
     <string name="hint_contact_email">Email</string>
     <string name="hint_contact_employeeID">Employee ID</string>
+    <string name="add_your_system">Add your system</string>
+    <string name="add_systemid">System ID</string>
+    <string name="add_problem">Describe the problem</string>
+    <string name="systemid">Add system ID</string>
+    <string name="probleminput">Describe the problem</string>
+    <string name="support_email">phamducnguyen@hotmail.com</string>
+    <string name="no_email_client">There are no email clients installed</string>
+    <string name="send_mail">Send mail...</string>
+    <string name="email_subject">Service request, system: </string>
+    <string name="hi">Hi!</string>
+    <string name="email_text"> have issues and need service</string>
+    <string name="regards">Regards</string>
+    <string name="message_data">mailto:</string>
+    <string name="message_type">message/rfc822</string>
 </resources>

@@ -17,10 +17,11 @@ import android.widget.Toast;
 public class SystemServiceActivity extends AppCompatActivity {
     Button call;
     Button generateemail;
+    Button back;
     TextView SystemId;
     EditText SystemInput;
     TextView problemdescription;
-    EditText editProblemdescription;
+    EditText EditProblemdescription;
     String referanse;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class SystemServiceActivity extends AppCompatActivity {
         SystemInput=(EditText)findViewById(R.id.SystemInput);
         //--------------------------------------------------------
         problemdescription=(TextView)findViewById(R.id.Problem);
-        editProblemdescription=(EditText)findViewById(R.id.ProblemInput);
+        EditProblemdescription=(EditText)findViewById(R.id.ProblemInput);
         call=(Button)findViewById(R.id.callsupport);
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
@@ -61,24 +62,30 @@ public class SystemServiceActivity extends AppCompatActivity {
                 startActivity(callIntent);
             }
         });
+        back=(Button)findViewById(R.id.back);
     }
     public void GenerateEmail(){
         String sysName = String.valueOf(SystemInput.getText());
+        String sysProblem= String.valueOf(EditProblemdescription.getText());
         Intent i = new Intent(Intent.ACTION_SENDTO);
-        i.setType("message/rfc822");
-        i.setData(Uri.parse("mailto:"));
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"phamducnguyen@hotmail.com"});
-        i.putExtra(Intent.EXTRA_SUBJECT, "Service request, system"+ sysName +"have issues and need service");
-        i.putExtra(Intent.EXTRA_TEXT   , "Hello!"+ "\n" + sysName+" have issues and need service"+ "\n" +"Regards"+ "\n" + referanse);
+        i.setType(getResources().getString(R.string.message_type));
+        i.setData(Uri.parse(getResources().getString(R.string.message_data)));
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getResources().getString(R.string.support_email)});
+        i.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.email_subject)+ sysName);
+        i.putExtra(Intent.EXTRA_TEXT   , getResources().getString(R.string.hi)+ "\n"+"\n" + sysName+getResources().getString(R.string.email_text)+ "\n" +sysProblem+ "\n"+"\n" +getResources().getString(R.string.regards)+ "\n" + referanse);
         getIntent().addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
-            startActivity(Intent.createChooser(i, "Send mail..."));
+            startActivity(Intent.createChooser(i, getResources().getString(R.string.send_mail)));
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.no_email_client), Toast.LENGTH_SHORT).show();
         }
     }
 
-
-
-
+    public void goback(View v) {
+        finish();
+    }
 }
+
+
+
+

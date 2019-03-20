@@ -22,7 +22,9 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="15dp"
-        android:id="@+id/object"/>
+        android:id="@+id/object"
+        android:text="@string/add_your_system"
+        />
 
 
     <EditText
