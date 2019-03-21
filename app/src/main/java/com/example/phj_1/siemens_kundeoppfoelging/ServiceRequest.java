@@ -27,20 +27,36 @@ TextView viewObject;
         back = (Button) findViewById(R.id.back2menu);
         call=(Button)findViewById(R.id.callsupport);
         sendemail=(Button)findViewById(R.id.sendmail);
-
-
         call.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:41170011"));
+                callIntent.setData(Uri.parse(getResources().getString(R.string.tel)+getResources().getString(R.string.support_phone)));
 
                 if (ActivityCompat.checkSelfPermission(ServiceRequest.this,
                         Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ServiceRequest.this, new String[]{Manifest.permission.CALL_PHONE},1);
                     return;
                 }
                 startActivity(callIntent);
             }
         });
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1 : {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent call = new Intent(Intent.ACTION_CALL, Uri.parse(getResources().getString(R.string.tel) + getResources().getString(R.string.support_phone)));
+
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                        startActivity(call);
+                    }
+                }
+            }
+        }
     }
 
     public void createemail(View v){
