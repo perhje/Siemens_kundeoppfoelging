@@ -27,22 +27,10 @@ public class Menu extends Activity{
     }
 
     public void youtubeChannel(View v){
-        /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
-            startActivity( launchIntent );*/
-        /*Intent intent = new  Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        intent.setPackage("com.android.gallery");
-        intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));
-        startActivity(intent);*/
-        /*
+        if(installedCheck(getResources().getString(R.string.packageYoutube))) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setPackage("com.google.android.youtube");
-            intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));//funker ikke på emulator, skal muligens funke så lenge youtube er der
-            startActivity(intent);*/
-        if(installedCheck("com.google.android.youtube")) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setPackage("com.google.android.youtube");
-            intent.setData(Uri.parse("https://www.youtube.com/siemenshealthineers"));//funker ikke på emulator, skal muligens funke så lenge youtube er der
+            intent.setPackage(getResources().getString(R.string.packageYoutube));
+            intent.setData(Uri.parse(getResources().getString(R.string.healthineers)));
             startActivity(intent);
         }else{
             Intent intent=new Intent(this,QRScreen.class);
@@ -51,8 +39,8 @@ public class Menu extends Activity{
     }
 
     public void lifeNet(View v){
-        if(installedCheck("com.siemenshealthineers.lnconnect")) {
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.siemenshealthineers.lnconnect");
+        if(installedCheck(getResources().getString(R.string.packageLifenet))) {
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage(getResources().getString(R.string.packageLifenet));
             startActivity( launchIntent );
         }else{
             Intent intent=new Intent(this,QRScreen.class);

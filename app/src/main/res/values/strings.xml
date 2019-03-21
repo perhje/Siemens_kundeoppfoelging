@@ -19,6 +19,9 @@
     <string name="hint_contact_Telephone">Telephone</string>
     <string name="hint_contact_email">Email</string>
     <string name="hint_contact_employeeID">Employee ID</string>
+    <string name="packageLifenet">com.siemenshealthineers.lnconnect</string>
+    <string name="packageYoutube">com.google.android.youtube</string>
+    <string name="healthineers">https://www.youtube.com/siemenshealthineers</string>
     <string name="add_your_system">Add your system</string>
     <string name="add_systemid">System ID</string>
     <string name="add_problem">Describe the problem</string>
