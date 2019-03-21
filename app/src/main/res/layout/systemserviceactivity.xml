@@ -20,14 +20,15 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="15dp"
-        android:id="@+id/SystemId"/>
+        android:id="@+id/SystemId"
+        android:text="@string/add_systemid"/>
 
 
     <EditText
         android:id="@+id/SystemInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@+id/system"
+        android:hint="@string/systemid"
         android:backgroundTint="@color/dark2"
         android:textColor="@color/accent2"/>
 
@@ -38,14 +39,15 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="15dp"
-        android:id="@+id/Problem"/>
+        android:id="@+id/Problem"
+        android:text="@string/add_problem"/>
 
 
     <EditText
         android:id="@+id/ProblemInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@+id/system"
+        android:hint="@string/probleminput"
         android:backgroundTint="@color/dark2"
         android:textColor="@color/accent2"/>
 
@@ -68,7 +70,14 @@
         android:text="@string/callsupport"
         android:textColor="@color/light1"
         android:background="@color/accent3"/>
-
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goback"
+        android:text="@string/back"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"/>
 
 
 </LinearLayout>
