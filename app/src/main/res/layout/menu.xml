@@ -25,7 +25,7 @@
             android:textColor="@color/light1"
             android:background="@color/accent3"
             android:text="@string/servicerequest"
-            android:onClick="serviceRequest"/>
+            android:onClick="systemServiceActivity"/>
 
         <Button
             android:id="@+id/changeuserinformation"
