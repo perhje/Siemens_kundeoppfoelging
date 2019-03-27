@@ -55,7 +55,7 @@ public class ContactInfo extends Activity{
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("yourName", yourNameEditText.getText().toString());
+        editor.putString(getResources().getString(R.string.yourName), yourNameEditText.getText().toString());
         editor.putString("yourTelephone", yourTelephoneEditText.getText().toString());
         editor.putString("yourEmail", yourEmailEditText.getText().toString());
         editor.putString("yourEmployeeID", yourEmployeeIDEditText.getText().toString());
