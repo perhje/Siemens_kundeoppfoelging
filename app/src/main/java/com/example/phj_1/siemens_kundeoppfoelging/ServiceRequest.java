@@ -22,8 +22,8 @@ TextView viewObject;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.service);
 
-        viewObject=(TextView)findViewById(R.id.object);
-        editObject=(EditText)findViewById(R.id.inputobject);
+        //viewObject=(TextView)findViewById(R.id.object);
+        //editObject=(EditText)findViewById(R.id.inputobject);
         back = (Button) findViewById(R.id.back2menu);
         call=(Button)findViewById(R.id.callsupport);
         sendemail=(Button)findViewById(R.id.sendmail);

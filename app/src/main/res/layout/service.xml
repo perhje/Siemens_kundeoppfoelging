@@ -15,53 +15,58 @@
         android:contentDescription="TODO"
         android:src="@mipmap/siemens_logo_four" />
 
-
-
     <TextView
+        android:id="@+id/textView_contact_yourName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="15dp"
-        android:id="@+id/object"/>
-
+        android:text="@string/system"
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
     <EditText
-        android:id="@+id/inputobject"
+        android:id="@+id/editText_contact_yourName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:hint="@string/system"
-        android:backgroundTint="@color/dark2"
-        android:textColor="@color/accent2"/>
+        android:inputType="text" />
 
-
-
-
-    <Button
-        android:id="@+id/sendmail"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sendmail"
-        android:onClick="createemail"
-        android:layout_marginTop="100dp"
-        android:textColor="@color/light1"
-        android:background="@color/accent3"/>
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/callsupport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/callsupport"
-        android:textColor="@color/light1"
-        android:background="@color/accent3"/>
+        <Button
+            android:id="@+id/sendmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/light1"
+            android:background="@color/accent3"
+            android:text="@string/sendmail"
+            android:onClick="createemail"/>
 
-    <Button
-        android:id="@+id/back2menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="goback"
-        android:text="@string/back"
-        android:textColor="@color/light1"
-        android:background="@color/accent3"/>
+        <Button
+            android:id="@+id/callsupport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/light1"
+            android:background="@color/accent3"
+            android:text="@string/callsupport"/>
 
+        <Button
+            android:id="@+id/back2menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/light1"
+            android:background="@color/accent3"
+            android:text="@string/back"/>
+
+        </LinearLayout>
 
 </LinearLayout>
