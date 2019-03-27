@@ -56,6 +56,16 @@
             android:background="@color/accent3"
             android:text="@string/lifenet"
             android:onClick="lifeNet"/>
+
+        <Button
+            android:id="@+id/backfrommenu"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light1"
+            android:background="@color/accent3"
+            android:text="@string/back"
+            android:onClick="back"/>
     </LinearLayout>
 
 

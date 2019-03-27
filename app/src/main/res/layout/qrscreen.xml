@@ -8,19 +8,19 @@
     android:orientation="vertical"
     android:layout_marginHorizontal="30dp">
 
-    <ImageView
-        android:id="@+id/imageView6"
+    <FrameLayout
+        android:id="@+id/scanner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        android:src="@mipmap/siemens_logo_four" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="@string/menu"
-        android:onClick="menu"
-        />
+        <Button
+            android:id="@+id/menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:onClick="menu"
+            android:text="@string/menu" />
+    </FrameLayout>
+
+
 </LinearLayout>
