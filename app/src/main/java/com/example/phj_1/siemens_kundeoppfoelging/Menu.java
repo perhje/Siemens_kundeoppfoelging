@@ -16,8 +16,8 @@ public class Menu extends Activity{
         setContentView(R.layout.menu);
     }
 
-    public void serviceRequest(View v){
-        Intent intent=new Intent(this,ServiceRequest.class);
+    public void systemServiceActivity(View v){
+        Intent intent=new Intent(this,SystemServiceActivity.class);
         startActivity(intent);
     }
 
