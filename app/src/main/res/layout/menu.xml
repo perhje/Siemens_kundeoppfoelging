@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="TODO"
-        android:src="@mipmap/siemens_logo_four" />
+        android:src="@mipmap/siemens_logo_four"
+        android:layout_marginTop="30dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +26,8 @@
             android:textColor="@color/light1"
             android:background="@color/accent3"
             android:text="@string/servicerequest"
-            android:onClick="systemServiceActivity"/>
+            android:onClick="systemServiceActivity"
+            android:layout_marginTop="40dp"/>
 
         <Button
             android:id="@+id/changeuserinformation"
@@ -35,21 +37,23 @@
             android:textColor="@color/light1"
             android:background="@color/accent3"
             android:text="@string/changeuserinformation"
-            android:onClick="changeUserInformation"/>
+            android:onClick="changeUserInformation"
+            />
 
         <Button
             android:id="@+id/youtubechannel"
-            android:layout_marginTop="10dp"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/light1"
             android:background="@color/accent3"
             android:text="@string/youtubechannel"
-            android:onClick="youtubeChannel"/>
+            android:onClick="youtubeChannel"
+            android:layout_marginTop="15dp"/>
 
         <Button
             android:id="@+id/lifenet"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/light1"
@@ -59,7 +63,7 @@
 
         <Button
             android:id="@+id/backfrommenu"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/light1"

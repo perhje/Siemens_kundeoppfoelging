@@ -40,7 +40,8 @@
         android:textStyle="bold"
         android:textSize="15dp"
         android:id="@+id/Problem"
-        android:text="@string/add_problem"/>
+        android:text="@string/add_problem"
+        android:layout_marginTop="15dp"/>
 
 
     <EditText
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sendmail"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/light1"
         android:background="@color/accent3"/>
 
@@ -68,10 +69,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/callsupport"
         android:textColor="@color/light1"
-        android:background="@color/accent3"/>
+        android:background="@color/accent3"
+        />
+
     <Button
         android:id="@+id/back"
         android:layout_width="match_parent"
@@ -79,7 +82,8 @@
         android:onClick="goback"
         android:text="@string/back"
         android:textColor="@color/light1"
-        android:background="@color/accent3"/>
+        android:background="@color/accent3"
+        android:layout_marginTop="15dp"/>
 
 
 </LinearLayout>

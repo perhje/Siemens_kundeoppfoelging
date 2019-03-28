@@ -45,6 +45,8 @@ public class ContactInfo extends Activity{
                 yourEmployeeIDEditText.setText(yourEmployeeIDEditText.getText().toString());
 
                 saveContactInfo();
+                finish();
+
             }
         });
 
