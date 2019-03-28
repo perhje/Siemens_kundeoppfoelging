@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/light1"
             android:background="@color/accent3"
-            android:text="@string/servicerequest"/>
+            android:text="@string/servicerequest"
+            android:onClick="systemServiceActivity"/>
 
         <Button
             android:id="@+id/changeuserinformation"
