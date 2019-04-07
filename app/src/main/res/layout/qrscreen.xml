@@ -5,22 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginHorizontal="30dp">
+    android:orientation="vertical">
 
-    <FrameLayout
+
+    <TextureView
         android:id="@+id/scanner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="514dp"></TextureView>
 
-        <Button
-            android:id="@+id/menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:onClick="menu"
-            android:text="@string/menu" />
-    </FrameLayout>
+    <Button
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:onClick="menu"
+        android:text="@string/menu" />
 
 
 </LinearLayout>
