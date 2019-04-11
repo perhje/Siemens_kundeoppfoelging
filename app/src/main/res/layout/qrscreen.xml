@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,15 +11,18 @@
     <TextureView
         android:id="@+id/scanner"
         android:layout_width="match_parent"
-        android:layout_height="514dp"></TextureView>
+        android:layout_height="match_parent"></TextureView>
 
     <Button
         android:id="@+id/menu"
-        android:layout_width="match_parent"
+        android:layout_width="139dp"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/scanner"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="bottom"
+        android:background="@color/accent3"
         android:onClick="menu"
         android:text="@string/menu" />
 
 
-</LinearLayout>
+</RelativeLayout>
