@@ -3,210 +3,89 @@ package com.example.phj_1.siemens_kundeoppfoelging;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.SurfaceTexture;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCaptureSession;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraDevice;
-import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.CameraMetadata;
-import android.hardware.camera2.CaptureRequest;
-import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.support.annotation.NonNull;
+import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Size;
-import android.view.Surface;
-import android.view.TextureView;
-import android.view.View;
-
-import java.util.Arrays;
-
+import android.util.SparseArray;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import java.io.IOException;
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 
 public class QRScreen extends AppCompatActivity {
-
-    TextureView scanner;
-
-    CameraDevice cameraDevice;
-    String cameraId;
-    Size imageDimensions;
-
-    Handler backgroundHandler;
-    HandlerThread handlerThread;
-
-    CaptureRequest.Builder captureBuilder;
-
-    CameraCaptureSession cameraCaptureSession;
+    SurfaceView scanner;
+    CameraSource cameraSource;
+    BarcodeDetector barcodeDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qrscreen);
-        scanner = (TextureView) findViewById(R.id.scanner);
+        scanner = (SurfaceView) findViewById(R.id.scanner);
         if (ActivityCompat.checkSelfPermission(QRScreen.this,
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.CAMERA}, 1);
             return;
         }
-        scanner.setSurfaceTextureListener(surfaceTextureListener);
+        barcodeDetector = new BarcodeDetector.Builder(this)
+                .setBarcodeFormats(Barcode.QR_CODE).build();
 
-    }
+        cameraSource = new CameraSource.Builder(this,barcodeDetector)
+                .setRequestedPreviewSize(640,480).build();
 
-    TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
-        @Override
-        public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-            try {
-                openCamera();
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-
-        }
-
-        @Override
-        public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-            return false;
-        }
-
-        @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
-        }
-    };
-
-    private void openCamera() throws CameraAccessException {
-        CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        cameraId = cameraManager.getCameraIdList()[0];
-
-        CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(cameraId);
-        StreamConfigurationMap map = cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-        imageDimensions = map.getOutputSizes(SurfaceTexture.class)[0];
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.CAMERA}, 1);
-            return;
-        }
-        cameraManager.openCamera(cameraId, stateCallback, null);
-    }
-
-    CameraDevice.StateCallback stateCallback =new CameraDevice.StateCallback() {
-        @Override
-        public void onOpened(@NonNull CameraDevice camera) {
-            cameraDevice = camera;
-            try {
-                startCameraPreview();
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        public void onDisconnected(@NonNull CameraDevice camera) {
-            cameraDevice.close();
-        }
-
-        @Override
-        public void onError(@NonNull CameraDevice camera, int error) {
-            cameraDevice.close();
-            cameraDevice = null;
-        }
-    };
-
-    private void startCameraPreview() throws CameraAccessException{
-        SurfaceTexture texture = scanner.getSurfaceTexture();
-        texture.setDefaultBufferSize(imageDimensions.getWidth(),imageDimensions.getHeight());
-
-        Surface surface = new Surface(texture);
-
-        captureBuilder = cameraDevice.createCaptureRequest(cameraDevice.TEMPLATE_PREVIEW);
-
-        captureBuilder.addTarget(surface);
-
-
-        cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback() {
+        scanner.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
-            public void onConfigured(@NonNull CameraCaptureSession session) {
-                if(cameraDevice == null){
+            public void surfaceCreated(SurfaceHolder holder) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.CAMERA}, 1);
                     return;
                 }
-
-                cameraCaptureSession = session;
                 try {
-                    updatePreview();
-                } catch (CameraAccessException e) {
+                    cameraSource.start(holder);
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
 
             @Override
-            public void onConfigureFailed(@NonNull CameraCaptureSession session) {
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
             }
-        },null);
-    }
 
-    private void updatePreview() throws CameraAccessException {
-        if(cameraDevice == null){
-            return;
-        }
-
-        captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
-        cameraCaptureSession.setRepeatingRequest(captureBuilder.build(),null,backgroundHandler);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        startBackgroundThread();
-
-        if(scanner.isAvailable()){
-            try {
-                openCamera();
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                cameraSource.stop();
             }
-        }else{
-            scanner.setSurfaceTextureListener(surfaceTextureListener);
-        }
-    }
+        });
 
-    private void startBackgroundThread() {
-        handlerThread = new HandlerThread("Camera Background");
-        handlerThread.start();
+        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+            @Override
+            public void release() {
 
-        backgroundHandler = new Handler(handlerThread.getLooper());
-    }
+            }
 
-    @Override
-    protected void onPause() {
-        try {
-            stopBackgroundThread();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        super.onPause();
-    }
+            @Override
+            public void receiveDetections(Detector.Detections<Barcode> detections) {
+                final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
+                if (qrCodes.size() != 0){
+                    Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(100);
+                    SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("qrCode", qrCodes.valueAt(0).displayValue);editor.apply();
+                    Intent intent = new Intent(QRScreen.this,ServiceRequest.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
-    private void stopBackgroundThread() throws InterruptedException {
-        handlerThread.quitSafely();
-        handlerThread.join();
-
-        backgroundHandler = null;
-        handlerThread = null;
-    }
-
-    public void menu(View v){
-        Intent intent=new Intent(this,Menu.class);
-        startActivity(intent);
     }
 }
 
