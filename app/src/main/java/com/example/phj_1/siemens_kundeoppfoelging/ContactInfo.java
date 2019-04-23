@@ -1,6 +1,7 @@
 package com.example.phj_1.siemens_kundeoppfoelging;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -45,7 +46,8 @@ public class ContactInfo extends Activity{
                 yourEmployeeIDEditText.setText(yourEmployeeIDEditText.getText().toString());
 
                 saveContactInfo();
-                finish();
+                Intent intent = new Intent(ContactInfo.this, QRScreen.class);
+                startActivity(intent);
 
             }
         });

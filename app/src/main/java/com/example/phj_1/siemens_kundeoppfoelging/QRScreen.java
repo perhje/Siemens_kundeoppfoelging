@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+
 import java.io.IOException;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -79,13 +81,19 @@ public class QRScreen extends AppCompatActivity {
                     vibrator.vibrate(100);
                     SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("qrCode", qrCodes.valueAt(0).displayValue);editor.apply();
+                    editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
+                    editor.apply();
                     Intent intent = new Intent(QRScreen.this,ServiceRequest.class);
                     startActivity(intent);
                 }
             }
         });
 
+    }
+
+    public void menu(View view){
+        Intent intent = new Intent(this, Menu.class);
+        startActivity(intent);
     }
 }
 
