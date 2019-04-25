@@ -101,7 +101,7 @@ public class SystemServiceActivity extends AppCompatActivity {
         i.setData(Uri.parse(getResources().getString(R.string.message_data)));
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getResources().getString(R.string.support_email)});
         i.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.email_subject)+ sysName);
-        i.putExtra(Intent.EXTRA_TEXT   , getResources().getString(R.string.hi)+ "\n"+"\n" + sysName+
+        i.putExtra(Intent.EXTRA_TEXT   , getResources().getString(R.string.hi)+ "\n"+"\n" + sysName+" "+
                 getResources().getString(R.string.email_text)+ "\n" +sysProblem+ "\n"+"\n"
                 +getResources().getString(R.string.regards)+ "\n" + referanse);
         getIntent().addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

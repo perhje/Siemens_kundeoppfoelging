@@ -9,7 +9,7 @@
     <string name="back">Back</string>
     <string name="callsupport">Call support</string>
     <string name="sendmail">Send request mail</string>
-    <string name="yourName">Name</string>
+    <string name="yourName">yourName</string>
     <string name="yourTelephone">Telephone</string>
     <string name="yourEmail">E-mail</string>
     <string name="yourEmployeeID">Employee ID</string>
