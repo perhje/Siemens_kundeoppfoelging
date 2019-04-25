@@ -36,6 +36,11 @@ public class QRScreen extends AppCompatActivity {
             ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.CAMERA}, 1);
             return;
         }
+        if (ActivityCompat.checkSelfPermission(QRScreen.this,
+                Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.VIBRATE}, 1);
+            return;
+        }
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
 
@@ -45,8 +50,14 @@ public class QRScreen extends AppCompatActivity {
         scanner.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.CAMERA}, 1);
+                    return;
+                }
+                if (ActivityCompat.checkSelfPermission(QRScreen.this,
+                        Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.VIBRATE}, 1);
                     return;
                 }
                 try {

@@ -31,14 +31,18 @@
         </activity>
         <activity android:name=".QRScreen"
             android:parentActivityName=".MainActivity">
-
+            <meta-data android:name="com.google.gms.vision.DEPENDENCIES" android:value="barcode" />
         </activity>
         <activity
             android:name=".ServiceRequest"
-            android:parentActivityName=".Menu"></activity>
+            android:parentActivityName=".Menu">
+
+        </activity>
         <activity
             android:name=".SystemServiceActivity"
-            android:parentActivityName=".Menu"></activity>
+            android:parentActivityName=".Menu">
+
+        </activity>
     </application>
 
 </manifest>
