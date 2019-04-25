@@ -24,7 +24,7 @@ public class GetJSON extends AsyncTask<String, Void,String> {
         String s = "";
         String output = "";
 
-        for (String url : urls) {
+        for (int i = 0; i < urls.length; i++) {
             try {
                 URL urlen = new URL(urls[0]);
                 HttpURLConnection conn = (HttpURLConnection) urlen.openConnection();
@@ -43,16 +43,50 @@ public class GetJSON extends AsyncTask<String, Void,String> {
                 conn.disconnect();
 
                 try {
-                    JSONArray mat = new JSONArray(output);
-                    for (int i = 0; i < mat.length(); i++) {
-                        JSONObject jsonobject = mat.getJSONObject(i);
-                        String name = jsonobject.getString("name");
-                        System.out.println("name: " + name);
-                        names.add(name);
-                        retur = retur + name + "\n";
-                    }
-                    return retur;
-                } catch (JSONException e) {
+                    //if (urls[i].equals("http://student.cs.hioa.no/~s309856/jsonoutSykehus.php")) {
+                        JSONArray locationJSONArray = new JSONArray(output);
+                        for (int j = 0; j < locationJSONArray.length(); j++) {
+                            JSONObject jsonobject = locationJSONArray.getJSONObject(j);
+                            String name = jsonobject.getString("name");
+                            System.out.println("name: " + name);
+                            names.add(name);
+//                            for(String f : names){
+//                                System.out.println("de derre: "+f);
+//                            }
+                            retur = retur + name + "\n";
+                        }
+//                    } else
+//                    if (urls[i].equals("http://student.cs.hioa.no/~s309856/jsonoutDepartment_Rikshospitalet.php")) {
+//                        JSONArray departmentJSONArray = new JSONArray(output);
+//                        for (int k = 0; k < departmentJSONArray.length(); k++) {
+//                            JSONObject jsonobject = departmentJSONArray.getJSONObject(k);
+//                            String name = jsonobject.getString("name");
+//                            System.out.println("name: " + name);
+//                            names.add(name);
+//                            retur = retur + name + "\n";
+//                        }
+//                    } else
+//                    if (urls[i].equals("http://student.cs.hioa.no/~s309856/jsonoutDepartment_Radiumhospitalet.php")) {
+//                        JSONArray departmentJSONArray = new JSONArray(output);
+//                        for (int l = 0; l < departmentJSONArray.length(); l++) {
+//                            JSONObject jsonobject = departmentJSONArray.getJSONObject(l);
+//                            String name = jsonobject.getString("name");
+//                            System.out.println("name: " + name);
+//                            names.add(name);
+//                            retur = retur + name + "\n";
+//                        }
+//                    } else {
+//                        JSONArray departmentJSONArray = new JSONArray(output);
+//                        for (int l = 0; l < departmentJSONArray.length(); l++) {
+//                            JSONObject jsonobject = departmentJSONArray.getJSONObject(l);
+//                            String name = jsonobject.getString("name");
+//                            System.out.println("name: " + name);
+//                            names.add(name);
+//                            retur = retur + name + "\n";
+//                        }
+//                    }
+                        return retur;
+                }catch (JSONException e) {
                     System.out.println("err: " + e.getMessage());
                     e.printStackTrace();
                 }
@@ -67,11 +101,16 @@ public class GetJSON extends AsyncTask<String, Void,String> {
 
     @Override
     protected void onPostExecute(String ss) {
+//        String[] strings = ss.split("/n");
+//        for(String jh : strings){
+//            System.out.println(jh + "/n");
+//        }
     }
 
     public List<String> getNames() {
         return names;
     }
+
 
     public void setNames(List<String> names) {
         this.names = names;

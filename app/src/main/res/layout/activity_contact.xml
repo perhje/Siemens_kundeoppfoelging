@@ -79,6 +79,16 @@
         android:hint="@string/hint_contact_employeeID"
         android:inputType="text" />
 
+    <Spinner
+        android:id="@+id/spinner_contact_yourHospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spinner_contact_yourDepartment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/button_contact_save"
         android:layout_width="match_parent"

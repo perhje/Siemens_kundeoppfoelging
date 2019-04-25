@@ -9,7 +9,7 @@
     <string name="back">Back</string>
     <string name="callsupport">Call support</string>
     <string name="sendmail">Send request mail</string>
-    <string name="yourName">yourName</string>
+    <string name="yourName">Name</string>
     <string name="yourTelephone">Telephone</string>
     <string name="yourEmail">E-mail</string>
     <string name="yourEmployeeID">Employee ID</string>
@@ -41,4 +41,6 @@
     <string name="support_phone">41141134</string>
     <string name="tel">tel:</string>
     <string name="addYourSystem">Add you system</string>
+    <string name="chooseLocation">Choose location</string>
+    <string name="chooseDepartment">Choose department</string>
 </resources>
