@@ -3,6 +3,7 @@
     package="com.example.phj_1.siemens_kundeoppfoelging">
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +17,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data android:name="com.google.gms.vision.DEPENDENCIES" android:value="barcode" />
         </activity>
 
         <activity android:name=".ContactInfo"
@@ -29,14 +31,18 @@
         </activity>
         <activity android:name=".QRScreen"
             android:parentActivityName=".MainActivity">
-
+            <meta-data android:name="com.google.gms.vision.DEPENDENCIES" android:value="barcode" />
         </activity>
         <activity
             android:name=".ServiceRequest"
-            android:parentActivityName=".Menu"></activity>
+            android:parentActivityName=".Menu">
+
+        </activity>
         <activity
             android:name=".SystemServiceActivity"
-            android:parentActivityName=".Menu"></activity>
+            android:parentActivityName=".Menu">
+
+        </activity>
     </application>
 
 </manifest>
