@@ -100,7 +100,7 @@ public class ContactInfo extends Activity implements AdapterView.OnItemSelectedL
                 yourEmployeeIDEditText.setText(yourEmployeeIDEditText.getText().toString());
 
                 saveContactInfo();
-                Intent intent = new Intent(ContactInfo.this, QRScreen.class);
+                Intent intent = new Intent(ContactInfo.this, MainActivity.class);
                 startActivity(intent);
 
                 finish();
