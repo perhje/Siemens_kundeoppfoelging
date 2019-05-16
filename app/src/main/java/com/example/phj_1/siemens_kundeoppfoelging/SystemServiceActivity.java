@@ -1,16 +1,17 @@
 package com.example.phj_1.siemens_kundeoppfoelging;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ public class SystemServiceActivity extends AppCompatActivity {
     TextView problemdescription;
     EditText EditProblemdescription;
     String referanse;
+    String body;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +87,7 @@ public class SystemServiceActivity extends AppCompatActivity {
 
                     if (ActivityCompat.checkSelfPermission(this,
                             Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                        this.GenerateEmail();
                         startActivity(call);
                     }
                 }
@@ -94,23 +97,50 @@ public class SystemServiceActivity extends AppCompatActivity {
 
 
     public void GenerateEmail(){
-        String sysName = String.valueOf(SystemInput.getText());
-        String sysProblem= String.valueOf(EditProblemdescription.getText());
-        Intent i = new Intent(Intent.ACTION_SENDTO);
-        i.setType(getResources().getString(R.string.message_type));
-        i.setData(Uri.parse(getResources().getString(R.string.message_data)));
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getResources().getString(R.string.support_email)});
-        i.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.email_subject)+ sysName);
-        i.putExtra(Intent.EXTRA_TEXT   , getResources().getString(R.string.hi)+ "\n"+"\n" + sysName+" "+
-                getResources().getString(R.string.email_text)+ "\n" +sysProblem+ "\n"+"\n"
-                +getResources().getString(R.string.regards)+ "\n" + referanse);
-        getIntent().addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        try {
-            startActivity(Intent.createChooser(i, getResources().getString(R.string.send_mail)));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, getResources().getString(R.string.no_email_client), Toast.LENGTH_SHORT).show();
-        }
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+
+                    String sysName = String.valueOf(SystemInput.getText());
+                    String sysProblem= String.valueOf(EditProblemdescription.getText());
+                    String body="";
+                    if(sysName.length()>0||sysProblem.length()>0) {
+                         body = getResources().getString(R.string.hi) + "\n" + "\n" + sysName + " " +
+                                getResources().getString(R.string.email_text) + "\n" + sysProblem + "\n" + "\n"
+                                + getResources().getString(R.string.regards) + "\n" + referanse;
+                    }else if(sysName.length()>0||sysProblem.length()<0){
+                        body = " Hi! \n\n System: "+sysName+"\n calling support "
+                                + getResources().getString(R.string.regards) + "\n" + referanse;;
+                    } else {
+                        body = " Hi! \n\n System down, calling support "
+                                + getResources().getString(R.string.regards) + "\n" + referanse;;
+                    }
+
+                    SystemMail sender=new SystemMail();
+                    sender.sendMail("system down", body,
+                            "phamducnguyen82@gmail.com");
+                    Message message = handler.obtainMessage();
+                    message.sendToTarget();
+                } catch (Exception e) {
+                    Log.e("SendMail", e.getMessage(), e);
+                }
+            }
+
+        }).start();
+
     }
+
+    Handler handler = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(Message message) {
+            Toast.makeText(getApplicationContext(),
+                    "service request sent",Toast.LENGTH_SHORT).show();
+        }
+    };
+
 
     public void goback(View v) {
         finish();
