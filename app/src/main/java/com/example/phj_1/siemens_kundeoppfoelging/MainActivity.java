@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     SurfaceView scanner;
     CameraSource cameraSource;
     BarcodeDetector barcodeDetector;
+    String serialNumber;
+    Message message;
 
 
     @Override
@@ -95,14 +101,22 @@ public class MainActivity extends AppCompatActivity {
                 public void receiveDetections(Detector.Detections<Barcode> detections) {
                     final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
                     if (qrCodes.size() != 0){
-                        Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(100);
                         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
-                        editor.apply();
-                        Intent intent = new Intent(MainActivity.this,ServiceRequest.class);
-                        startActivity(intent);
+                        if(qrCodes.valueAt(0).displayValue.equals(serialNumber)) {
+                            Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                            vibrator.vibrate(100);
+                            editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
+                            editor.apply();
+                            Intent intent = new Intent(MainActivity.this, ServiceRequest.class);
+                            startActivity(intent);
+                        }
+                        if(!qrCodes.valueAt(0).displayValue.equals(serialNumber)){
+                            message = handler.obtainMessage();
+                            message.sendToTarget();
+                            editor.putString("qrCode", "feil qr");
+                            editor.apply();
+                        }
                     }
                 }
             });
@@ -131,4 +145,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
     }
+
+    Handler handler = new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(Message message) {
+            Toast.makeText(getApplicationContext(),
+                    getApplicationContext().getText(R.string.qrFail),Toast.LENGTH_SHORT).show();
+        }
+    };
 }

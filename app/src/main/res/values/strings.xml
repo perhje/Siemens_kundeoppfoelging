@@ -43,4 +43,5 @@
     <string name="addYourSystem">Add you system</string>
     <string name="chooseLocation">Choose location</string>
     <string name="chooseDepartment">Choose department</string>
+    <string name="qrFail">Qr-code is not valid</string>
 </resources>
