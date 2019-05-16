@@ -111,8 +111,12 @@ public class SystemServiceActivity extends AppCompatActivity {
                          body = getResources().getString(R.string.hi) + "\n" + "\n" + sysName + " " +
                                 getResources().getString(R.string.email_text) + "\n" + sysProblem + "\n" + "\n"
                                 + getResources().getString(R.string.regards) + "\n" + referanse;
-                    }else {
-                        body = " System down, calling support ";
+                    }else if(sysName.length()>0||sysProblem.length()<0){
+                        body = " Hi! \n\n System: "+sysName+"\n calling support "
+                                + getResources().getString(R.string.regards) + "\n" + referanse;;
+                    } else {
+                        body = " Hi! \n\n System down, calling support "
+                                + getResources().getString(R.string.regards) + "\n" + referanse;;
                     }
 
                     SystemMail sender=new SystemMail();
