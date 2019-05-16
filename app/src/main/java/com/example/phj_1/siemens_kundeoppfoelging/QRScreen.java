@@ -31,9 +31,15 @@ public class QRScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qrscreen);
         scanner = (SurfaceView) findViewById(R.id.scanner);
+
         if (ActivityCompat.checkSelfPermission(QRScreen.this,
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.CAMERA}, 1);
+            return;
+        }
+        if (ActivityCompat.checkSelfPermission(QRScreen.this,
+                Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.VIBRATE}, 1);
             return;
         }
         barcodeDetector = new BarcodeDetector.Builder(this)
@@ -41,12 +47,17 @@ public class QRScreen extends AppCompatActivity {
 
         cameraSource = new CameraSource.Builder(this,barcodeDetector)
                 .setRequestedPreviewSize(640,480).build();
-
         scanner.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.CAMERA}, 1);
+                    return;
+                }
+                if (ActivityCompat.checkSelfPermission(QRScreen.this,
+                        Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(QRScreen.this, new String[]{Manifest.permission.VIBRATE}, 1);
                     return;
                 }
                 try {

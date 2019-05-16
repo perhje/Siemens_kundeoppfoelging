@@ -37,12 +37,10 @@
             android:textColor="@color/light1"
             android:background="@color/accent3"
             android:text="@string/changeuserinformation"
-            android:onClick="changeUserInformation"
-            />
+            android:onClick="changeUserInformation"/>
 
         <Button
             android:id="@+id/youtubechannel"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/light1"
