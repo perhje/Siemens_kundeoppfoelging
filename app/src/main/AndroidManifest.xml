@@ -37,11 +37,6 @@
 
         </activity>
         <activity
-            android:name=".ServiceRequest"
-            android:parentActivityName=".Menu">
-
-        </activity>
-        <activity
             android:name=".SystemServiceActivity"
             android:parentActivityName=".Menu">
 

@@ -94,7 +94,7 @@ public class QRScreen extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
                     editor.apply();
-                    Intent intent = new Intent(QRScreen.this,ServiceRequest.class);
+                    Intent intent = new Intent(QRScreen.this,SystemServiceActivity.class);
                     startActivity(intent);
                 }
             }

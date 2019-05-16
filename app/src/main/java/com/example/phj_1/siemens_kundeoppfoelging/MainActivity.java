@@ -55,72 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.VIBRATE}, 1);
                 return;
             }
-            barcodeDetector = new BarcodeDetector.Builder(this)
-                    .setBarcodeFormats(Barcode.QR_CODE).build();
-
-            cameraSource = new CameraSource.Builder(this,barcodeDetector)
-                    .setRequestedPreviewSize(640,480).build();
-            scanner.getHolder().addCallback(new SurfaceHolder.Callback() {
-                @Override
-                public void surfaceCreated(SurfaceHolder holder) {
-                    if (ActivityCompat.checkSelfPermission(getApplicationContext(),
-                            Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
-                        return;
-                    }
-                    if (ActivityCompat.checkSelfPermission(getApplicationContext(),
-                            Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.VIBRATE}, 1);
-                        return;
-                    }
-                    try {
-                        cameraSource.start(holder);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                @Override
-                public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-                }
-
-                @Override
-                public void surfaceDestroyed(SurfaceHolder holder) {
-                    cameraSource.stop();
-                }
-            });
-
-            barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-                @Override
-                public void release() {
-
-                }
-
-                @Override
-                public void receiveDetections(Detector.Detections<Barcode> detections) {
-                    final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                    if (qrCodes.size() != 0){
-                        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        if(qrCodes.valueAt(0).displayValue.equals(serialNumber)) {
-                            cameraSource.release();
-                            Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(100);
-                            editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
-                            editor.apply();
-                            Intent intent = new Intent(MainActivity.this, ServiceRequest.class);
-                            startActivity(intent);
-                        }
-                        if(!qrCodes.valueAt(0).displayValue.equals(serialNumber)){
-                            message = handler.obtainMessage();
-                            message.sendToTarget();
-                            editor.putString("qrCode", "feil qr");
-                            editor.apply();
-                        }
-                    }
-                }
-            });
+            this.qrScreen();
         }
     }
 
@@ -131,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+   protected void onResume() {
         super.onResume();
+        this.qrScreen();
+
         /*SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         if(sharedPreferences.getString("yourName", "").equals("")){
             launchSecondActivity(null);
@@ -154,4 +91,75 @@ public class MainActivity extends AppCompatActivity {
                     getApplicationContext().getText(R.string.qrFail),Toast.LENGTH_SHORT).show();
         }
     };
+
+    public void qrScreen(){
+        barcodeDetector = new BarcodeDetector.Builder(this)
+                .setBarcodeFormats(Barcode.QR_CODE).build();
+
+        cameraSource = new CameraSource.Builder(this,barcodeDetector)
+                .setRequestedPreviewSize(640,480).build();
+        scanner.getHolder().addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+                    return;
+                }
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.VIBRATE}, 1);
+                    return;
+                }
+                try {
+                    cameraSource.start(holder);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                cameraSource.stop();
+            }
+        });
+
+        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+            @Override
+            public void release() {
+
+            }
+
+            @Override
+            public void receiveDetections(Detector.Detections<Barcode> detections) {
+                final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
+                if (qrCodes.size() != 0){
+                    SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    // if(qrCodes.valueAt(0).displayValue.equals(serialNumber)) {
+
+                    Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator.vibrate(100);
+                    editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
+                    editor.apply();
+                    Intent intent = new Intent(MainActivity.this, SystemServiceActivity.class);
+                    startActivity(intent);
+                    barcodeDetector.release();
+                    //}
+                       /* if(!qrCodes.valueAt(0).displayValue.equals(serialNumber)){
+                            message = handler.obtainMessage();
+                            message.sendToTarget();
+                            editor.putString("qrCode", "feil qr");
+                            editor.apply();
+                        }*/
+                }
+            }
+        });
+
+    }
 }
