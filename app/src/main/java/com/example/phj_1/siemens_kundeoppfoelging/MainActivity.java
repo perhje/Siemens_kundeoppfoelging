@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         if(qrCodes.valueAt(0).displayValue.equals(serialNumber)) {
+                            cameraSource.release();
                             Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(100);
                             editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
