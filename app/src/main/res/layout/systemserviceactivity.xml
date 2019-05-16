@@ -62,7 +62,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
         android:textColor="@color/light1"
-        android:background="@color/accent3"/>
+        android:background="@color/accent3" />
 
     <Button
         android:id="@+id/callsupport"
