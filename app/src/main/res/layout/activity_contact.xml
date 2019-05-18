@@ -79,15 +79,41 @@
         android:hint="@string/hint_contact_employeeID"
         android:inputType="text" />
 
-    <Spinner
-        android:id="@+id/spinner_contact_yourHospital"
+    <TextView
+        android:id="@+id/textView_contact_yourHospital"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/yourHospital"
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
-    <Spinner
-        android:id="@+id/spinner_contact_yourDepartment"
+    <Button
+        android:id="@+id/button_contact_ShowDropDown_Hospitals"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"
+        android:text="@string/chooseHospital" />
+
+    <TextView
+        android:id="@+id/textView_contact_yourDepartment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/yourDepartment"
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
+
+    <Button
+        android:id="@+id/button_contact_ShowDropDown_Departments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/light1"
+        android:background="@color/accent3"
+        android:text="@string/chooseDepartment" />
 
     <Button
         android:id="@+id/button_contact_save"

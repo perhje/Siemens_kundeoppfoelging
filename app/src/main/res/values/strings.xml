@@ -42,5 +42,8 @@
     <string name="tel">tel:</string>
     <string name="addYourSystem">Add you system</string>
     <string name="chooseLocation">Choose location</string>
-    <string name="chooseDepartment">Choose department</string>
+    <string name="chooseDepartment">Velg avdeling</string>
+    <string name="yourHospital">Sykehus</string>
+    <string name="chooseHospital">Velg sykehus</string>
+    <string name="yourDepartment">Avdeling</string>
 </resources>
