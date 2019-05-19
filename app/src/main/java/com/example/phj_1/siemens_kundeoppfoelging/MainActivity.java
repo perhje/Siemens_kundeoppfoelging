@@ -25,6 +25,8 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
+        MachineJSON machineJSON = new MachineJSON();
+        try {
+            machineJSON.getMachineStrings();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         /*if(sharedPreferences.getString("yourName", "").equals("")){
             launchSecondActivity(null);
         }else */if(true){
