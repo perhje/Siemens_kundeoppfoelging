@@ -48,5 +48,7 @@
     <string name="qrFound">System found</string>
     <string name="sysLocation">System location</string>
     <string name="locationInput">Add location</string>
-
+    <string name="disclaimer">These data are only saved locally and used for easier communication
+        when problems ocurre. The data will be changed/deleted when you change this data or
+        delete the app</string>
 </resources>

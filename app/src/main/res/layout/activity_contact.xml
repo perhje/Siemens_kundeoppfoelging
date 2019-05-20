@@ -98,4 +98,11 @@
         android:textColor="@color/light1"
         android:background="@color/accent3"
         android:text="@string/save" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:textColor="@color/dark1"
+        android:text="@string/disclaimer" />
 </LinearLayout>
