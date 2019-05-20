@@ -56,4 +56,5 @@
     <string name="disclaimer">These data are only saved locally and used for easier communication
         when problems ocurre. The data will be changed/deleted when you change this data or
         delete the app</string>
+    <string name="at">at</string>
 </resources>

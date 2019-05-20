@@ -128,7 +128,7 @@ public class SystemServiceActivity extends AppCompatActivity {
                     String sysProblem= String.valueOf(EditProblemdescription.getText());
                     String body="";
                     if(sysName.length()>0||sysProblem.length()>0) {
-                         body = getResources().getString(R.string.hi) + "\n" + "\n" + sysName + " " +
+                         body = getResources().getString(R.string.hi) + "\n" + "\n" + sysName + " " +getResources().getString(R.string.at)+" "+LocationInput.getText()+" "+
                                 getResources().getString(R.string.email_text) + "\n" + sysProblem + "\n" + "\n"
                                 + getResources().getString(R.string.regards) + "\n" + referanse;
                     }else if(sysName.length()>0||sysProblem.length()<0){
