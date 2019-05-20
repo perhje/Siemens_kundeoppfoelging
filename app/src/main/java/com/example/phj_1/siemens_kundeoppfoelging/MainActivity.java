@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-        if(sharedPreferences.getString("Name", "").equals("") ||
-                sharedPreferences.getString("yourTelephone", "").equals("") ||
-                sharedPreferences.getString("yourEmail", "").equals(""))
+        if(sharedPreferences.getString(getResources().getString(R.string.hint_contact_name), "").equals("") ||
+                sharedPreferences.getString(getResources().getString(R.string.hint_contact_Telephone), "").equals("") ||
+                sharedPreferences.getString(getResources().getString(R.string.hint_contact_email), "").equals(""))
         {
             launchSecondActivity(null);
         }
@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         this.qrScreen();
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-        if(sharedPreferences.getString("Name", "").equals("") ||
-                sharedPreferences.getString("yourTelephone", "").equals("") ||
-                sharedPreferences.getString("yourEmail", "").equals(""))
+        if(sharedPreferences.getString(getResources().getString(R.string.hint_contact_name), "").equals("") ||
+                sharedPreferences.getString(getResources().getString(R.string.hint_contact_Telephone), "").equals("") ||
+                sharedPreferences.getString(getResources().getString(R.string.hint_contact_email), "").equals(""))
         {
             launchSecondActivity(null);
         }

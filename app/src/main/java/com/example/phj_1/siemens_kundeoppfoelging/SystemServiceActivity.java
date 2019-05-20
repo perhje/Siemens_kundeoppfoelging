@@ -54,16 +54,20 @@ public class SystemServiceActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-        String yourName = sharedPreferences.getString("Name", "");
-        String yourTelephone = sharedPreferences.getString("yourTelephone", "");
-        String yourEmail = sharedPreferences.getString("yourEmail", "");
-        String yourEmployeeID = sharedPreferences.getString("yourEmployeeID", "");
+        String yourName = sharedPreferences.getString(getResources().getString(R.string.hint_contact_name), "");
+        String yourTelephone = sharedPreferences.getString(getResources().getString(R.string.hint_contact_Telephone), "");
+        String yourEmail = sharedPreferences.getString(getResources().getString(R.string.hint_contact_email), "");
+        String yourEmployeeID = sharedPreferences.getString(getResources().getString(R.string.hint_contact_employeeID), "");
+        String yourEmployeeHospital = sharedPreferences.getString(getResources().getString(R.string.chooseHospital),"");
+        String yourEmployeeDepartment= sharedPreferences.getString(getResources().getString(R.string.chooseDepartment),"");
 
         referanse = getResources()
                 .getString(R.string.yourName)+": " + yourName + "\n" + getResources()
                 .getString(R.string.yourEmployeeID)+": " + yourEmployeeID + "\n" + getResources()
                 .getString(R.string.yourTelephone)+": " + yourTelephone + "\n" + getResources()
-                .getString(R.string.yourEmail)+": " + yourEmail;
+                .getString(R.string.yourEmail)+": " + yourEmail+ "\n" + getResources()
+                .getString(R.string.hospital)+": " + yourEmployeeHospital+ "\n" + getResources()
+                .getString(R.string.department)+": " + yourEmployeeDepartment;
         generateemail = (Button) findViewById(R.id.sendmail);
         generateemail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +128,7 @@ public class SystemServiceActivity extends AppCompatActivity {
                     String sysProblem= String.valueOf(EditProblemdescription.getText());
                     String body="";
                     if(sysName.length()>0||sysProblem.length()>0) {
-                         body = getResources().getString(R.string.hi) + "\n" + "\n" + sysName + " " +
+                         body = getResources().getString(R.string.hi) + "\n" + "\n" + sysName + " " +getResources().getString(R.string.at)+" "+LocationInput.getText()+" "+
                                 getResources().getString(R.string.email_text) + "\n" + sysProblem + "\n" + "\n"
                                 + getResources().getString(R.string.regards) + "\n" + referanse;
                     }else if(sysName.length()>0||sysProblem.length()<0){
