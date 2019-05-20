@@ -19,7 +19,7 @@ public class SystemMail {
     public synchronized void sendMail(String subject, String body, String recipients) throws Exception {
 
 
-        //properties for gmail
+        //information neeed for gmail.
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
@@ -27,7 +27,7 @@ public class SystemMail {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", "465");
 
-        //start a session
+        //start off a session to send email
         session = Session.getDefaultInstance(props,
                 new Authenticator() {
                     //Authenticating the password
