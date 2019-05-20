@@ -41,11 +41,9 @@ public class MainActivity extends AppCompatActivity {
     SurfaceView scanner;
     CameraSource cameraSource;
     BarcodeDetector barcodeDetector;
-    String serialNumber;
     Message message;
-    String test = "besj";
+    String test = "";
     String[] table;
-    String[][] tableD;
     String url = "http://student.cs.hioa.no/~s309856/jsonoutSystems.php";
     String result = "test";
     MachineJSON machineJSON = new MachineJSON();
@@ -53,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println(test);
-        //new MachineJSON().execute(url);
         try {
             result = machineJSON.execute(url).get();
         } catch (ExecutionException e) {
@@ -62,49 +58,48 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        /*try {
-            test2 = GetJSONSystem.getMachineList();
-            for(int i = 0; i < test2.size();i++){
-                System.out.println(test2.get(i).toString());
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
+        if(sharedPreferences.getString("Name", "").equals("") ||
+                sharedPreferences.getString("Name", "").equals("") ||
+                sharedPreferences.getString("Name", "").equals(""))
+        {
+            launchSecondActivity(null);
+        }
         test = sharedPreferences.getString("table", "");
-        System.out.println(test);
         if(!test.equals("")){
             table = test.split("\n");
         }
-        /*tableD = new String[3][table.length];
-        for (int i = 0; i < table.length; i++){
-            String[] temp = table[i].split("-");
-            for (int j = 0; j < 3; j++){
-                tableD[j][i] = temp[j];
-            }
+        setContentView(R.layout.activity_main);
+        scanner = findViewById(R.id.scanner);
+        scanner.setZOrderOnTop(true);
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+            return;
         }
-        for(int i = 0; i < table.length; i++){
-            System.out.println(tableD[i][]);
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.VIBRATE}, 1);
+            return;
         }
-        /*if(sharedPreferences.getString("yourName", "").equals("")){
+        this.qrScreen();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.qrScreen();
+        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
+        if(sharedPreferences.getString("Name", "").equals("") ||
+                sharedPreferences.getString("Name", "").equals("") ||
+                sharedPreferences.getString("Name", "").equals(""))
+        {
             launchSecondActivity(null);
-        }else */
- //       System.out.println(table.toString());
-        if (true) {
-            setContentView(R.layout.activity_main);
-            scanner = findViewById(R.id.scanner);
-            scanner.setZOrderOnTop(true);
-            if (ActivityCompat.checkSelfPermission(getApplicationContext(),
-                    Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
-                return;
-            }
-            if (ActivityCompat.checkSelfPermission(getApplicationContext(),
-                    Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.VIBRATE}, 1);
-                return;
-            }
-            this.qrScreen();
+        }
+        test = sharedPreferences.getString("table", "");
+        if(!test.equals("")){
+            table = test.split("\n");
         }
     }
 
@@ -114,35 +109,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        this.qrScreen();
-
-        /*SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-        if(sharedPreferences.getString("yourName", "").equals("")){
-            launchSecondActivity(null);
-        }else{
-            Intent intent = new Intent(this, QRScreen.class);
-            startActivity(intent);
-        }*/
-    }
-
     public void menu(View view) {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
     }
 
-    Handler handler = new Handler(Looper.getMainLooper()) {
+    Handler systemToast = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message message) {
             Toast.makeText(getApplicationContext(),
                     getApplicationContext().getText(R.string.qrFail), Toast.LENGTH_SHORT).show();
         }
     };
-
-
-
+    
     public void qrScreen() {
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
@@ -190,33 +169,21 @@ public class MainActivity extends AppCompatActivity {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
                 if (qrCodes.size() != 0) {
-                   // SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-                   // SharedPreferences.Editor editor = sharedPreferences.edit();
                     for(int i = 0; i < table.length; i++) {
                         String[] temp = table[i].split("-");
                         if (qrCodes.valueAt(0).displayValue.equals(temp[0])) {
                             Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(100);
-                            //editor.putString("qrCode", qrCodes.valueAt(0).displayValue);
-                           // editor.apply();
                             Intent intent = new Intent(MainActivity.this, SystemServiceActivity.class);
                             intent.putExtra( "machine",temp);
                             startActivity(intent);
                             barcodeDetector.release();
 
                         }else {
-                            message = handler.obtainMessage();
+                            message = systemToast.obtainMessage();
                             message.sendToTarget();
-                          //  editor.putString("qrCode", "feil qr");
-                          //  editor.apply();
                         }
                     }
-                    /*if (!qrCodes.valueAt(0).displayValue.equals("87654321")) {
-                        message = handler.obtainMessage();
-                        message.sendToTarget();
-                        editor.putString("qrCode", "feil qr");
-                        editor.apply();
-                    }*/
                 }
             }
         });
@@ -244,7 +211,6 @@ public class MainActivity extends AppCompatActivity {
                 BufferedReader reader = new BufferedReader(streamReader);
                 StringBuilder stringBuilder = new StringBuilder();
                 while ((inputLine = reader.readLine()) != null) {
-                    //stringBuilder.append(inputLine);
                     output = output + inputLine;
                 }
                 connection.disconnect();
@@ -284,12 +250,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(String result){
-            test = result;
             SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("table", result);
             editor.apply();
-            System.out.println(result+ "finisherdadfe");
             super.onPostExecute(result);
         }
     }
