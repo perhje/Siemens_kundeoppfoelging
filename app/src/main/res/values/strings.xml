@@ -43,9 +43,9 @@
     <string name="tel">tel:</string>
     <string name="addYourSystem">Add you system</string>
     <string name="chooseLocation">Choose location</string>
+    <string name="yourDepartment"></string>
     <string name="yourHospital">Sykehus</string>
-    <string name="chooseHospital">Velg sykehus</string>
-    <string name="yourDepartment">Avdeling</string>
+    <string name="chooseHospital">Choose hospital</string>
     <string name="chooseDepartment">Choose department</string>
     <string name="qrFail">Looking for system...</string>
     <string name="qrFound">System found</string>

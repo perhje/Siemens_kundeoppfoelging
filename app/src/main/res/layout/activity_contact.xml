@@ -101,6 +101,7 @@
         android:id="@+id/textView_contact_yourDepartment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/yourDepartment"
         android:textSize="10sp"
         android:textColor="@color/accent5"/>

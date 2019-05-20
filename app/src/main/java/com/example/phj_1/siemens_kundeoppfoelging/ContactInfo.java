@@ -28,6 +28,20 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
     private Button yourDepartmentButton;
     private PopupWindow yourDepartmentPopupWindow;
     private Button saveButton;
+    private boolean hospitalChoosed = false;
+    private int position_Rikshospitalet = 0;
+    private int position_Radiumhospitalet = 1;
+    private int position_GaustadSykehus = 2;
+    private int position_AkerSykehus = 3;
+    private int position_UllevålSykehus = 4;
+    private int position_GeilomoBarnesykehus = 5;
+    private int position_DikemarkSykehus = 6;
+    private int position_AkershusUniversitetsSykehus = 7;
+    private int position_SkiSykehus = 8;
+    private int position_KongsvingerSykehus = 9;
+    private int position_DiakonhjemmetSykehus = 10;
+    private int position_LovisenbergDiakonaleSykehus = 11;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +53,11 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
         yourTelephoneEditText = findViewById(R.id.editText_contact_yourTelephone);
         yourEmailEditText = findViewById(R.id.editText_contact_yourEmail);
         yourEmployeeIDEditText = findViewById(R.id.editText_contact_yourEmployeeID);
-        saveButton = findViewById(R.id.button_contact_save);
         yourHospitalButton = findViewById(R.id.button_contact_ShowDropDown_Hospitals);
         yourDepartmentButton = findViewById(R.id.button_contact_ShowDropDown_Departments);
+        saveButton = findViewById(R.id.button_contact_save);
 
-        yourHospitalPopupWindow = popupWindowHospitals("http://student.cs.hioa.no/~s309856/jsonoutSykehus.php");
+        yourHospitalPopupWindow = popupWindowHospitals("http://student.cs.hioa.no/~s309856/jsonoutHospitals.php");
 
         View.OnClickListener handler = new View.OnClickListener() {
             public void onClick(View v) {
@@ -54,7 +68,9 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
                 }
                 switch (v.getId()) {
                     case R.id.button_contact_ShowDropDown_Departments:
-                        yourDepartmentPopupWindow.showAsDropDown(v, 0, 0);
+                        if (hospitalChoosed) {
+                            yourDepartmentPopupWindow.showAsDropDown(v, 0, 0);
+                        }
                         break;
                 }
             }
@@ -125,29 +141,43 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        hospitalChoosed = true;
         Context mContext = view.getContext();
         yourHospitalPopupWindow.dismiss();
         String selectedItemText = (String) parent.getItemAtPosition(position);
         yourHospitalButton.setText(selectedItemText);
         Toast.makeText(mContext, "Valgt sykehus: " + selectedItemText, Toast.LENGTH_LONG).show();
 
-        if (position == 0){
-            yourDepartmentPopupWindow = popupWindowDepartments("http://student.cs.hioa.no/~s309856/jsonoutDepartment_Rikshospitalet.php");
-        } else {
-            yourDepartmentPopupWindow = popupWindowDepartments("http://student.cs.hioa.no/~s309856/jsonoutDepartment_Radiumhospitalet.php");
+        if (position == position_Rikshospitalet){
+            yourDepartmentPopupWindow = popupWindowDepartments(
+                    "http://student.cs.hioa.no/~s309856/jsonoutDepartment_Rikshospitalet.php"
+            );
+        } else if(position == position_Radiumhospitalet) {
+            yourDepartmentPopupWindow = popupWindowDepartments(
+                    "http://student.cs.hioa.no/~s309856/jsonoutDepartment_Radiumhospitalet.php"
+            );
         }
+        else if(position == position_GaustadSykehus) { }
+        else if(position == position_UllevålSykehus) { }
+        else if(position == position_GeilomoBarnesykehus) { }
+        else if(position == position_DikemarkSykehus) { }
+        else if(position == position_AkershusUniversitetsSykehus) { }
+        else if(position == position_SkiSykehus) { }
+        else if(position == position_KongsvingerSykehus) { }
+        else if(position == position_DiakonhjemmetSykehus) { }
+        else if(position == position_LovisenbergDiakonaleSykehus) { }
     }
 
     public void saveContactInfo(){
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(getResources().getString(R.string.yourName), yourNameEditText.getText().toString());
-        editor.putString(getResources().getString(R.string.yourTelephone), yourTelephoneEditText.getText().toString());
-        editor.putString(getResources().getString(R.string.yourEmail), yourEmailEditText.getText().toString());
-        editor.putString(getResources().getString(R.string.yourEmployeeID), yourEmployeeIDEditText.getText().toString());
-        editor.putString(getResources().getString(R.string.yourHospital), yourHospitalButton.getText().toString());
-        editor.putString(getResources().getString(R.string.yourDepartment), yourDepartmentButton.getText().toString());
+        editor.putString(getResources().getString(R.string.hint_contact_name), yourNameEditText.getText().toString());
+        editor.putString(getResources().getString(R.string.hint_contact_Telephone), yourTelephoneEditText.getText().toString());
+        editor.putString(getResources().getString(R.string.hint_contact_email), yourEmailEditText.getText().toString());
+        editor.putString(getResources().getString(R.string.hint_contact_employeeID), yourEmployeeIDEditText.getText().toString());
+        editor.putString(getResources().getString(R.string.chooseHospital), yourHospitalButton.getText().toString());
+        editor.putString(getResources().getString(R.string.chooseDepartment), yourDepartmentButton.getText().toString());
 
         editor.apply();
     }
@@ -158,12 +188,12 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
 
-        String yourName = sharedPreferences.getString(getResources().getString(R.string.yourName), "");
-        String yourTelephone = sharedPreferences.getString(getResources().getString(R.string.yourTelephone), "");
-        String yourEmail = sharedPreferences.getString(getResources().getString(R.string.yourEmail), "");
-        String yourEmployeeID = sharedPreferences.getString(getResources().getString(R.string.yourEmployeeID), "");
-        String yourHospital = sharedPreferences.getString(getResources().getString(R.string.yourHospital),getResources().getString(R.string.chooseHospital));
-        String yourDepartment = sharedPreferences.getString(getResources().getString(R.string.yourDepartment),getResources().getString(R.string.chooseDepartment));
+        String yourName = sharedPreferences.getString(getResources().getString(R.string.hint_contact_name), "");
+        String yourTelephone = sharedPreferences.getString(getResources().getString(R.string.hint_contact_Telephone), "");
+        String yourEmail = sharedPreferences.getString(getResources().getString(R.string.hint_contact_email), "");
+        String yourEmployeeID = sharedPreferences.getString(getResources().getString(R.string.hint_contact_employeeID), "");
+        String yourHospital = sharedPreferences.getString(getResources().getString(R.string.chooseHospital),getResources().getString(R.string.chooseHospital));
+        String yourDepartment = sharedPreferences.getString(getResources().getString(R.string.chooseDepartment),getResources().getString(R.string.chooseDepartment));
 
         yourNameEditText.setText(yourName);
         yourTelephoneEditText.setText(yourTelephone);
