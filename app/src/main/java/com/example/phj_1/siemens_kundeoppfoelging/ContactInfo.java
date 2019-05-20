@@ -73,7 +73,7 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
                 yourDepartmentButton.setText(yourDepartmentButton.getText().toString());
 
                 saveContactInfo();
-                Intent intent = new Intent(ContactInfo.this, QRScreen.class);
+                Intent intent = new Intent(ContactInfo.this, MainActivity.class);
                 startActivity(intent);
 
                 finish();

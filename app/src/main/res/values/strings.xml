@@ -46,4 +46,5 @@
     <string name="yourHospital">Sykehus</string>
     <string name="chooseHospital">Velg sykehus</string>
     <string name="yourDepartment">Avdeling</string>
+    <string name="qrFail">Qr-code is not valid</string>
 </resources>
