@@ -30,6 +30,9 @@ public class SystemServiceActivity extends AppCompatActivity {
     EditText EditProblemdescription;
     String referanse;
 
+
+
+/*create the scene for systemservice activity*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.systemserviceactivity);
@@ -68,6 +71,8 @@ public class SystemServiceActivity extends AppCompatActivity {
                 GenerateEmail();
             }
         });
+
+        /*setonclicklistener for button call. This fire off the phone call. */
         call.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
@@ -85,7 +90,8 @@ public class SystemServiceActivity extends AppCompatActivity {
         });
 
     }
-
+/*** This method check the permisssion before making phone call and will ask user for permission if its not permitted
+ * in advance, then makes the call and in the same time call to method generate email to generate new email and send it to support***/
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -105,11 +111,11 @@ public class SystemServiceActivity extends AppCompatActivity {
         }
     }
 
-
+/**This method generate email with information from contact info in a separate thread and send the email.
+ * It aslo get the information from the QR-scan function.
+ * **/
     public void GenerateEmail(){
-
         new Thread(new Runnable() {
-
             @Override
             public void run() {
                 try {
@@ -142,7 +148,7 @@ public class SystemServiceActivity extends AppCompatActivity {
         }).start();
 
     }
-
+/*handler request from thread to inform user*/
     Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(Message message) {
@@ -151,7 +157,7 @@ public class SystemServiceActivity extends AppCompatActivity {
         }
     };
 
-
+/**This method kill the activity**/
     public void goback(View v) {
         finish();
     }
