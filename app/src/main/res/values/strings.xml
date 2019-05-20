@@ -29,7 +29,8 @@
     <string name="add_problem">Describe the problem</string>
     <string name="systemid">Add system ID</string>
     <string name="probleminput">Describe the problem</string>
-    <string name="support_email">phamducnguyen@hotmail.com</string>
+    <string name="support_email">siemenshealthbach@gmail.com</string>
+    <string name="password_email">S13m3nsH3lth</string>
     <string name="no_email_client">There are no email clients installed</string>
     <string name="send_mail">Send mail...</string>
     <string name="email_subject">Service request, system: </string>
@@ -38,10 +39,14 @@
     <string name="regards">Regards</string>
     <string name="message_data">mailto:</string>
     <string name="message_type">message/rfc822</string>
-    <string name="support_phone">41141134</string>
+    <string name="support_phone">22634400</string>
     <string name="tel">tel:</string>
     <string name="addYourSystem">Add you system</string>
     <string name="chooseLocation">Choose location</string>
     <string name="chooseDepartment">Choose department</string>
-    <string name="qrFail">Qr-code is not valid</string>
+    <string name="qrFail">Looking for system...</string>
+    <string name="qrFound">System found</string>
+    <string name="sysLocation">System location</string>
+    <string name="locationInput">Add location</string>
+
 </resources>

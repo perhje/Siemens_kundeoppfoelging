@@ -24,28 +24,38 @@ public class SystemServiceActivity extends AppCompatActivity {
     Button back;
     TextView SystemId;
     EditText SystemInput;
+    TextView Systemlocation;
+    EditText LocationInput;
     TextView problemdescription;
     EditText EditProblemdescription;
     String referanse;
-    String body;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.systemserviceactivity);
-        //-----------need to rewrite code when using QR CODE------
         SystemId = (TextView) findViewById(R.id.SystemId);
         SystemInput = (EditText) findViewById(R.id.SystemInput);
-        //--------------------------------------------------------
+        Systemlocation= (TextView) findViewById(R.id.sysLoc);
+        LocationInput = (EditText) findViewById(R.id.LocationInput);
         problemdescription = (TextView) findViewById(R.id.Problem);
         EditProblemdescription = (EditText) findViewById(R.id.ProblemInput);
         call = (Button) findViewById(R.id.callsupport);
         back = (Button) findViewById(R.id.back);
+
+        Intent k=getIntent();
+        String [] machine= k.getStringArrayExtra("machine");
+        if(machine!=null){
+            SystemInput.setText(machine[0]);
+            LocationInput.setText(machine[1]+", "+machine[2]);
+        }
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         String yourName = sharedPreferences.getString("yourName", "");
         String yourTelephone = sharedPreferences.getString("yourTelephone", "");
         String yourEmail = sharedPreferences.getString("yourEmail", "");
         String yourEmployeeID = sharedPreferences.getString("yourEmployeeID", "");
+
         referanse = getResources()
                 .getString(R.string.yourName)+": " + yourName + "\n" + getResources()
                 .getString(R.string.yourEmployeeID)+": " + yourEmployeeID + "\n" + getResources()
@@ -121,7 +131,7 @@ public class SystemServiceActivity extends AppCompatActivity {
 
                     SystemMail sender=new SystemMail();
                     sender.sendMail("system down", body,
-                            "phamducnguyen82@gmail.com");
+                            getResources().getString(R.string.support_email));
                     Message message = handler.obtainMessage();
                     message.sendToTarget();
                 } catch (Exception e) {
