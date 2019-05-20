@@ -46,7 +46,9 @@
     <string name="yourDepartment"></string>
     <string name="yourHospital">Sykehus</string>
     <string name="chooseHospital">Choose hospital</string>
+    <string name="hospital">Hospital</string>
     <string name="chooseDepartment">Choose department</string>
+    <string name="department">Department</string>
     <string name="qrFail">Looking for system...</string>
     <string name="qrFound">System found</string>
     <string name="sysLocation">System location</string>
