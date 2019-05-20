@@ -27,7 +27,7 @@
         android:id="@+id/editText_contact_yourName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_name"
         android:inputType="text" />
 
@@ -43,7 +43,7 @@
         android:id="@+id/editText_contact_yourTelephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_Telephone"
         android:inputType="phone" />
 
@@ -59,7 +59,7 @@
         android:id="@+id/editText_contact_yourEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_email"
         android:inputType="textEmailAddress" />
 
@@ -75,7 +75,7 @@
         android:id="@+id/editText_contact_yourEmployeeID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_employeeID"
         android:inputType="text" />
 
@@ -84,9 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/light1"
-        android:background="@color/accent3transparent"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/dark1"
         android:text="@string/chooseHospital" />
 
     <Button
@@ -94,9 +93,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/light1"
-        android:background="@color/accent3transparent"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/dark1"
         android:text="@string/chooseDepartment" />
 
     <Button
