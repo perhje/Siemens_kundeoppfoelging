@@ -54,7 +54,7 @@ public class SystemServiceActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-        String yourName = sharedPreferences.getString("yourName", "");
+        String yourName = sharedPreferences.getString("Name", "");
         String yourTelephone = sharedPreferences.getString("yourTelephone", "");
         String yourEmail = sharedPreferences.getString("yourEmail", "");
         String yourEmployeeID = sharedPreferences.getString("yourEmployeeID", "");

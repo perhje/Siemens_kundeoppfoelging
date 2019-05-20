@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
     CameraSource cameraSource;
     BarcodeDetector barcodeDetector;
     Message message;
-    String test = "";
+    String dataString = "";
     String[] table;
     String url = "http://student.cs.hioa.no/~s309856/jsonoutSystems.php";
-    String result = "test";
+    String result;
     MachineJSON machineJSON = new MachineJSON();
 
     @Override
@@ -58,20 +58,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
-        if(sharedPreferences.getString("Name", "").equals("") ||
-                sharedPreferences.getString("Name", "").equals("") ||
-                sharedPreferences.getString("Name", "").equals(""))
-        {
-            launchSecondActivity(null);
-        }
-        test = sharedPreferences.getString("table", "");
-        if(!test.equals("")){
-            table = test.split("\n");
-        }
-        setContentView(R.layout.activity_main);
-        scanner = findViewById(R.id.scanner);
-        scanner.setZOrderOnTop(true);
         if (ActivityCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
@@ -82,6 +68,20 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.VIBRATE}, 1);
             return;
         }
+        SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
+        if(sharedPreferences.getString("Name", "").equals("") ||
+                sharedPreferences.getString("yourTelephone", "").equals("") ||
+                sharedPreferences.getString("yourEmail", "").equals(""))
+        {
+            launchSecondActivity(null);
+        }
+        dataString = sharedPreferences.getString("table", "");
+        if(!dataString.equals("")){
+            table = dataString.split("\n");
+        }
+        setContentView(R.layout.activity_main);
+        scanner = findViewById(R.id.scanner);
+        scanner.setZOrderOnTop(true);
         this.qrScreen();
     }
 
@@ -92,14 +92,14 @@ public class MainActivity extends AppCompatActivity {
         this.qrScreen();
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         if(sharedPreferences.getString("Name", "").equals("") ||
-                sharedPreferences.getString("Name", "").equals("") ||
-                sharedPreferences.getString("Name", "").equals(""))
+                sharedPreferences.getString("yourTelephone", "").equals("") ||
+                sharedPreferences.getString("yourEmail", "").equals(""))
         {
             launchSecondActivity(null);
         }
-        test = sharedPreferences.getString("table", "");
-        if(!test.equals("")){
-            table = test.split("\n");
+        dataString = sharedPreferences.getString("table", "");
+        if(!dataString.equals("")){
+            table = dataString.split("\n");
         }
     }
 
