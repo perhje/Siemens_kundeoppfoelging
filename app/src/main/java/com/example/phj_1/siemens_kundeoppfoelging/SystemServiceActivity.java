@@ -97,11 +97,11 @@ public class SystemServiceActivity extends AppCompatActivity {
 /*** This method check the permisssion before making phone call and will ask user for permission if its not permitted
  * in advance, then makes the call and in the same time call to method generate email to generate new email and send it to support***/
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
+    public void onRequestPermissionsResult(int regcode, String permissions[], int[] grantRes) {
+        switch (regcode) {
             case 1 : {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantRes.length > 0
+                        && grantRes[0] == PackageManager.PERMISSION_GRANTED) {
                     Intent call = new Intent(Intent.ACTION_CALL, Uri.parse(getResources().getString(R.string.tel)
                             + getResources().getString(R.string.support_phone)));
 
