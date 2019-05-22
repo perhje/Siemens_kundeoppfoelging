@@ -97,11 +97,11 @@ public class SystemServiceActivity extends AppCompatActivity {
 /*** This method check the permisssion before making phone call and will ask user for permission if its not permitted
  * in advance, then makes the call and in the same time call to method generate email to generate new email and send it to support***/
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
+    public void onRequestPermissionsResult(int regcode, String permissions[], int[] grantRes) {
+        switch (regcode) {
             case 1 : {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantRes.length > 0
+                        && grantRes[0] == PackageManager.PERMISSION_GRANTED) {
                     Intent call = new Intent(Intent.ACTION_CALL, Uri.parse(getResources().getString(R.string.tel)
                             + getResources().getString(R.string.support_phone)));
 
@@ -132,15 +132,15 @@ public class SystemServiceActivity extends AppCompatActivity {
                                 getResources().getString(R.string.email_text) + "\n" + sysProblem + "\n" + "\n"
                                 + getResources().getString(R.string.regards) + "\n" + referanse;
                     }else if(sysName.length()>0||sysProblem.length()<0){
-                        body = " Hi! \n\n System: "+sysName+"\n calling support "
+                        body = " Hi! \n\n System: "+sysName+"\n"+ getResources().getString(R.string.callingsupport)
                                 + getResources().getString(R.string.regards) + "\n" + referanse;;
                     } else {
-                        body = " Hi! \n\n System down, calling support "
+                        body = " Hi! \n\n"+getResources().getString(R.string.systemdown)+", "+  getResources().getString(R.string.callingsupport)
                                 + getResources().getString(R.string.regards) + "\n" + referanse;;
                     }
 
                     SystemMail sender=new SystemMail();
-                    sender.sendMail("system down", body,
+                    sender.sendMail(getResources().getString(R.string.systemdown), body,
                             getResources().getString(R.string.support_email));
                     Message message = handler.obtainMessage();
                     message.sendToTarget();
@@ -157,7 +157,7 @@ public class SystemServiceActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message message) {
             Toast.makeText(getApplicationContext(),
-                    "service request sent",Toast.LENGTH_SHORT).show();
+                    getResources().getString(R.string.requestsend),Toast.LENGTH_SHORT).show();
         }
     };
 
