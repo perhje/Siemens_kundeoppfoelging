@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 
 public class ContactInfo extends Activity implements AdapterView.OnItemClickListener {
 
@@ -112,7 +111,6 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
                 yourDepartmentPopupWindow.dismiss();
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 yourDepartmentButton.setText(selectedItemText);
-                Toast.makeText(mContext, "Valgt avdeling: " + selectedItemText, Toast.LENGTH_SHORT).show();
             }
         });
         return getPopupWindow(listView, url);
@@ -146,7 +144,6 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
         yourHospitalPopupWindow.dismiss();
         String selectedItemText = (String) parent.getItemAtPosition(position);
         yourHospitalButton.setText(selectedItemText);
-        Toast.makeText(mContext, "Valgt sykehus: " + selectedItemText, Toast.LENGTH_LONG).show();
 
         if (position == position_Rikshospitalet){
             yourDepartmentPopupWindow = popupWindowDepartments(

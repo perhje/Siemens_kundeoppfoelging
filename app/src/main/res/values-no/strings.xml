@@ -1,20 +1,20 @@
 <resources>
     <string name="app_name">Siemens_kundeoppfoelging</string>
-    <string name="servicerequest">Service Request</string>
-    <string name="changeuserinformation">Change User Information</string>
-    <string name="youtubechannel">Youtube Channel</string>
+    <string name="servicerequest">Serviceforespørsel</string>
+    <string name="changeuserinformation">Endre brukerinformasjon</string>
+    <string name="youtubechannel">Youtube Kanal</string>
     <string name="lifenet">Lifenet</string>
-    <string name="menu">Menu</string>
-    <string name="system">Add your system</string>
-    <string name="back">Back</string>
-    <string name="back2qr">Back to Qr-screen</string>
-    <string name="callsupport">Call support</string>
-    <string name="sendmail">Send request mail</string>
+    <string name="menu">Meny</string>
+    <string name="system">Legg til system</string>
+    <string name="back">Tilbake</string>
+    <string name="back2qr">Tilbake til Qr-skjerm</string>
+    <string name="callsupport">Ring support</string>
+    <string name="sendmail">Send forespørsel på mail</string>
     <string name="yourName">Name</string>
     <string name="yourTelephone">Telephone</string>
     <string name="yourEmail">E-mail</string>
     <string name="yourEmployeeID">Employee ID</string>
-    <string name="save">Save</string>
+    <string name="save">Lagre</string>
     <string name="button_main">Main</string>
     <string name="hint_contact_name">Name</string>
     <string name="hint_contact_Telephone">Telephone</string>
@@ -25,11 +25,11 @@
     <string name="healthineers">https://www.youtube.com/siemenshealthineers</string>
     <string name="googleplay">market://details?id=</string>
     <string name="googleplayweb">https://play.google.com/store/apps/details?id=</string>
-    <string name="add_your_system">Add your system</string>
+    <string name="add_your_system">Legg til system</string>
     <string name="add_systemid">System ID</string>
-    <string name="add_problem">Describe the problem</string>
-    <string name="systemid">Add system ID</string>
-    <string name="probleminput">Describe the problem</string>
+    <string name="add_problem">Beskriv problemet</string>
+    <string name="systemid">Legg til systemID</string>
+    <string name="probleminput">Beskriv problemet</string>
     <string name="support_email">siemenshealthbach@gmail.com</string>
     <string name="password_email">S13m3nsH3lth</string>
     <string name="no_email_client">There are no email clients installed</string>
@@ -42,22 +42,22 @@
     <string name="message_type">message/rfc822</string>
     <string name="support_phone">22634400</string>
     <string name="tel">tel:</string>
-    <string name="addYourSystem">Add you system</string>
-    <string name="chooseLocation">Choose location</string>
+    <string name="addYourSystem">Legg til ditt system</string>
+    <string name="chooseLocation">Velg lokasjon</string>
     <string name="yourDepartment">Department </string>
     <string name="yourHospital">Hospital</string>
-    <string name="chooseHospital">Choose hospital</string>
+    <string name="chooseHospital">Velg sykehus</string>
     <string name="hospital">Hospital</string>
-    <string name="chooseDepartment">Choose department</string>
+    <string name="chooseDepartment">Velg avdeling</string>
     <string name="department">Department</string>
     <string name="qrFail">Looking for system...</string>
-    <string name="requestsend">Service request sent</string>
+    <string name="requestsend">Serviceforespørsel sendt</string>
     <string name="qrFound">System found</string>
-    <string name="sysLocation">System location</string>
-    <string name="locationInput">Add location</string>
-    <string name="disclaimer">These data are only saved locally and used for easier communication
-        when problems ocurre. The data will be changed/deleted when you change this data or
-        delete the app.</string>
+    <string name="sysLocation">System lokasjon</string>
+    <string name="locationInput">Legg til lokasjon</string>
+    <string name="disclaimer">Disse dataene vil kun bli lagret lokalt og brukt til lettere
+        kommunikasjon når problemer intreffer. Alle data vil bli endret/slettet når man endrer på
+        aktuelle data eller sletter appen.</string>
     <string name="at">at</string>
     <string name="systemdown">System down</string>
     <string name="callingsupport">calling support</string>
