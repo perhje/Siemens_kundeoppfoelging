@@ -27,7 +27,6 @@
         android:id="@+id/editText_contact_yourName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_name"
         android:inputType="text" />
 
@@ -43,7 +42,6 @@
         android:id="@+id/editText_contact_yourTelephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_Telephone"
         android:inputType="phone" />
 
@@ -59,7 +57,6 @@
         android:id="@+id/editText_contact_yourEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_email"
         android:inputType="textEmailAddress" />
 
@@ -75,25 +72,40 @@
         android:id="@+id/editText_contact_yourEmployeeID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:hint="@string/hint_contact_employeeID"
         android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textView_contact_yourHospital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/yourHospital"
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
     <Button
         android:id="@+id/button_contact_ShowDropDown_Hospitals"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:textColor="@color/dark1"
         android:text="@string/chooseHospital" />
+
+    <TextView
+        android:id="@+id/textView_contact_yourDepartment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/yourDepartment"
+        android:textSize="10sp"
+        android:textColor="@color/accent5"/>
 
     <Button
         android:id="@+id/button_contact_ShowDropDown_Departments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:textColor="@color/dark1"
         android:text="@string/chooseDepartment" />
 

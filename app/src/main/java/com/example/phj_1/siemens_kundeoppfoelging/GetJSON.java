@@ -49,9 +49,6 @@ public class GetJSON extends AsyncTask<String, Void,String> {
                             String name = jsonobject.getString("name");
                             System.out.println("name: " + name);
                             names.add(name);
-                            for(String f : names){
-                                System.out.println("de derre: "+f);
-                            }
                             retur = retur + name + "\n";
                         }
                         return retur;
