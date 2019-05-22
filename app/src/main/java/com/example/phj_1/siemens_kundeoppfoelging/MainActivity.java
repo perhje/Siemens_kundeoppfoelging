@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     String result;
     MachineJSON machineJSON = new MachineJSON();
 
+    //Calls the values from the database, check for
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +86,10 @@ public class MainActivity extends AppCompatActivity {
         this.qrScreen();
     }
 
-
+    //Runs the QR-screen to make it ready for scanning
     @Override
     protected void onResume() {
         super.onResume();
-        this.qrScreen();
         SharedPreferences sharedPreferences = getSharedPreferences("PREFERENCES", MODE_PRIVATE);
         if(sharedPreferences.getString(getResources().getString(R.string.hint_contact_name), "").equals("") ||
                 sharedPreferences.getString(getResources().getString(R.string.hint_contact_Telephone), "").equals("") ||
@@ -101,19 +101,22 @@ public class MainActivity extends AppCompatActivity {
         if(!dataString.equals("")){
             table = dataString.split("\n");
         }
+        this.qrScreen();
     }
 
+    //Launches the contactInfo
     public void launchSecondActivity(View view) {
         Intent intent = new Intent(this, ContactInfo.class);
         startActivity(intent);
-
     }
 
+    //Sends the user to the menu
     public void menu(View view) {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
     }
 
+    //Makes a toast that tells the user to
     Handler systemToast = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message message) {
@@ -121,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
                     getApplicationContext().getText(R.string.qrFail), Toast.LENGTH_SHORT).show();
         }
     };
-    
+
+    //Does the scanning of the code and sends to SystemServiceActivity if getting a hit.
     public void qrScreen() {
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.QR_CODE).build();
@@ -164,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             public void release() {
 
             }
-
+            //Take in the QR-code, check if system is in database and stops it to avoid multiple intents
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
@@ -190,10 +194,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Gets the data from the database and puts the data as an easy handleable string in shared preferences
     private class MachineJSON extends AsyncTask<String, Void, String> {
-        public static final String REQUEST_METHOD = "GET";
-        public static final int READ_TIMEOUT = 15000;
-        public static final int CONNECTION_TIMEOUT = 15000;
+        static final String REQUEST_METHOD = "GET";
+        static final int READ_TIMEOUT = 15000;
+        static final int CONNECTION_TIMEOUT = 15000;
         @Override
         protected String doInBackground(String... params) {
             String stringUrl = params[0];
