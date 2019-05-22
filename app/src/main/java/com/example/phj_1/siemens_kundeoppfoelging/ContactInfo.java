@@ -158,6 +158,7 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
             );
         }
         else if(position == position_GaustadSykehus) { }
+        else if(position == position_AkerSykehus) { }
         else if(position == position_UllevålSykehus) { }
         else if(position == position_GeilomoBarnesykehus) { }
         else if(position == position_DikemarkSykehus) { }
@@ -166,6 +167,7 @@ public class ContactInfo extends Activity implements AdapterView.OnItemClickList
         else if(position == position_KongsvingerSykehus) { }
         else if(position == position_DiakonhjemmetSykehus) { }
         else if(position == position_LovisenbergDiakonaleSykehus) { }
+
     }
 
     public void saveContactInfo(){
