@@ -33,7 +33,7 @@ public class Menu extends Activity{
             intent.setData(Uri.parse(getResources().getString(R.string.healthineers)));
             startActivity(intent);
         }else if(installer(getResources().getString(R.string.packageYoutube))){
-            Intent intent=new Intent(this,QRScreen.class);
+            Intent intent=new Intent(this,MainActivity.class);
             startActivity(intent);
         }else{
 
@@ -49,7 +49,7 @@ public class Menu extends Activity{
             Intent launchIntent = getPackageManager().getLaunchIntentForPackage(getResources().getString(R.string.packageLifenet));
             startActivity( launchIntent );
         }else if(installer(getResources().getString(R.string.packageLifenet))){
-            Intent intent=new Intent(this,QRScreen.class);
+            Intent intent=new Intent(this,MainActivity.class);
             startActivity(intent);
         }else{
 

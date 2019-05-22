@@ -33,10 +33,6 @@
             android:parentActivityName=".MainActivity">
 
         </activity>
-        <activity android:name=".QRScreen"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
         <activity
             android:name=".SystemServiceActivity"
             android:parentActivityName=".Menu">

@@ -7,6 +7,7 @@
     <string name="menu">Menu</string>
     <string name="system">Add your system</string>
     <string name="back">Back</string>
+    <string name="back2qr">Back to Qr-screen</string>
     <string name="callsupport">Call support</string>
     <string name="sendmail">Send request mail</string>
     <string name="yourName">Name</string>
@@ -50,6 +51,7 @@
     <string name="chooseDepartment">Choose department</string>
     <string name="department">Department</string>
     <string name="qrFail">Looking for system...</string>
+    <string name="requestsend">Service request sent</string>
     <string name="qrFound">System found</string>
     <string name="sysLocation">System location</string>
     <string name="locationInput">Add location</string>
@@ -57,4 +59,6 @@
         when problems ocurre. The data will be changed/deleted when you change this data or
         delete the app</string>
     <string name="at">at</string>
+    <string name="systemdown">System down</string>
+    <string name="callingsupport">calling support</string>
 </resources>
